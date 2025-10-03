@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="index.css">
+<meta charset =" utf-8">
+<title> Main Page </title>
+<html>
+
+    <body>
+        <!--Let's get a header that we can copy and paste into every page-->
+        <header><h1><strong>Chopstick Restaurant</strong></h1>
+            <nav>
+                <!--Nav Items are a list, use CSS to format them correctly-->
+            <ul>
+               <li><a href="index.html">Home</a></li>                        
+               <li><a href="menu.html">Menu</a></li>
+               <li><a href="order_food.html">Order</a></li>
+               <li><a href="contact_us.html">Contact</a></li>
+               <li><a href="about.html">Rubric</a></li>
+            </ul>
+        </nav>  
+        </header>
+        <!--Use a Grid Container so everything fits nicely-->
+        <div id="grid-container">  
+         
+           <div id="hours"><h2>Kitchen Hours:</h2>
+            
+            <p> Monday: Closed </p>            
+            <p> Tuesday: 11:00 AM - 9:00 PM </p>
+            <p> Wednesday: 11:00 AM - 9:00 PM </p>
+            <p> Thursday: 11:00 AM - 9:00 PM </p> 
+            <p> Friday: 11:00 AM - 11:00 PM </p>
+            <p> Saturday: 11:00 AM - 11:00 PM </p>
+            <p> Sunday: 11:00 AM - 10:00 PM </p>
+            
+            </div> <!--close hours-->
+           <!--Use a div to create a new grid column--> 
+           <div><img src="images/chopstick.jpg"></div>
+
+           <!--Use a div to create a new grid column--> 
+           <div><h2>Catering Events:</h2>
+            <ul>
+                <li>Gradutions</li>
+                <li>Bridal Showers</li>
+                <li>Baby Showers</li>
+                <li>Retirements</li>
+                <li>Birthdays</li>
+                <li>Weddings</li>
+                <li>Family Reunions</li>
+            </ul>
+               <p> Let us cater! <a href="files/catering.docx">Please fill out
+                the catering request here.</a> </p>                    
+            
+           </div>
+           
+        </div>
+
+        <!--I'll put this article below the grid container-->
+        <!--It could the be second row of a grid, all one column-->
+        <article>
+           <h3><strong>Voted Best Restaurant in city for 2023</strong></h3>
+         <p>City Magazine has voted us the best place to eat in 2023!
+             It's not just the food, but the ambiance, location
+             and hours that make our establishment the best!
+             Come in today and try our food fresh - or
+             have it delivered to anywhere in this city.</p>
+             <h3><strong>New for Summer 2023!</strong></h3>
+         <p>Added Try Catch Block, LocalStorage, and cart.html
+            improved menu with collapsible buttons
+         </p> 
+        </article>
+
+        <!--I'll put this footer below the grid container-->
+        <!--Use CSS to float and clear at the bottom-->
+        <footer>
+            <strong>Accessibility Statement</strong>
+            <p>Chopstick follows the section 508 Standards
+            and WCAG 2.1 for web accessibility.
+            If you require this content in another format,
+            <a href ="mailto:michael.mcleod@ung.edu">please send an
+                 email to our team.</a></p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="menu.css">
+<meta charset ="utf-8">
+<title> Main Page </title>
+<html>
+<body>
+<!--Let's get a header that we can copy and paste into every page-->
+  <header><h1><strong>Chopstick Restaurant</strong></h1>
+    <nav>
+    <ul>
+       <li><a href="index.html">Home</a></li>                        
+       <li><a href="menu.html">Menu</a></li>
+       <li><a href="order_food.html">Order</a></li>
+       <li><a href="contact_us.html">Contact</a></li>
+       <li><a href="about.html">Rubric</a></li>
+    </ul>
+  </nav>  
+  </header>
+  <div id='d1' style="position:absolute; top:40%; left:65%; z-index:1">  
+    <canvas id='canvas1' width='350px' height='200px'>
+          Your browser does not support HTML5 Canvas.
+   </canvas>
+  </div>
+  <!--use javaScript to create rotating images-->
+<div class="slideshow-container">
+  
+  <!--3 div all in the same class. We can call the different divs to display in JavaScript-->
+  <div class="mySlides fade">
+    <img src="images/poke.jpg">
+    <div class="numbertext">1 / 3<br>Poke
+    <br>
+    <p>Diced raw fish served either<br>
+       as an appetizer or a main course<br>
+       and is one of the popular<br>
+      dishes in Hawaii.</p>
+      
+    </div>
+      
+  </div>
+  
+  <div class="mySlides fade">
+    <img src="images/sushi.jpg">
+    <div class="numbertext">2 / 3<br>Sushi
+      <br>
+      <p>A Japanese dish of prepared<br> 
+         vinegared rice(鮨飯), usually<br>
+         with some sugar and salt,<br>
+         accompanied by a variety of<br>
+         ingredients such as seafood</p>  
+    </div>
+  </div>
+  
+  <div class="mySlides fade">
+    <img src="images/ramen.jpg">
+    <div class="numbertext">3 / 3<br>Ramen
+    <br>
+    <p>A Japanese noodle dish.<br>
+       It consists of<br>
+       Chinese-style wheat noodles<br>
+      (中華麺)served in a broth<br>
+      common flavors are:<br>
+      soy sauce, miso<br></p>
+  </div>
+      
+  </div>
+  <div style="text-align:center">
+    <br>
+    <span class="dot"></span> 
+    <span class="dot"></span> 
+    <span class="dot"></span> 
+    <br>
+  
+
+  </div>
+  </div>
+  
+  </div>
+ 
+    <h2 id="s1">Sushi Rolls
+    <button id="srExpand" onclick="expand(1)">+</button>
+    <button id="srCollapse" onclick="collapse(1)">-</button>
+    </h2>
+    <div id="sushi" style="display: none;">
+
+    <p><strong><u>Salmon Tempura Roll:</u></strong> Salmon, cream cheese and asparagus
+         dipped in tempura and flash-fried: <strong>$15.99</strong>  </p>
+    
+    <p><strong><u>Rainbow Roll:</u></strong> California Roll topped with assorted fish
+        , Red Tobiko: <strong>$14.99</strong></p>
+
+    <p><strong><u>Spicy Tuna Roll:</u></strong> Yellowfin Tuna, avocado, sriracha
+        cream cheese: <strong>$15.99</strong></p>
+    <p><strong><u>Velvet Roll⭐:</u></strong>Fried Soft Shell Crab Tempura,
+        Cucumber, Spicy Tuna, Avacado, Eel Sauce: <strong>$17.99</strong></p>
+    <p><strong><u>8 Piece Nigiri:</u></strong> Two pieces each of salmon, tuna, shrimp, and eel. <strong>$16.99</strong></p>
+    <p><strong><u>Chef's Choice:</u></strong> Feeling Brave? The Chef will make the choices. <strong>$12.99</strong></p>   
+    </div>
+
+    <h2 id="s2">Poke Bowls
+    <button id="pkExpand" onclick="expand(4)">+</button>
+    <button id="pkCollapse" onclick="collapse(4)">-</button>
+    </h2>
+    <div id="poke" style="display: none;">
+        <p><strong><u>Tsukiji Bowl:</u></strong> white rice, tuna, spicy tuna,
+            salmon, crab salad, seasoned fish roe, cucumber, onion,
+            scallion, raddish, pickled radish, nori, spicy mayo, classic poké: <strong>$15.99</strong></p>
+        <!--Yes you can copy paste emoji in-->
+        <p><strong><u>Shoyu Bowl: 🌶️</u></strong> white rice, choice of tuna or salmon, cucumber, pickled onion,
+            pickled jalapeno, pickled radish, edamame: <strong>$14.99</strong></p>   
+        <p><strong><u>Masago Bowl: </u></strong> white rice, choice of tuna or salmon, masago, toasted almonds,
+           cucumber, fried onion, edamame: <strong>$14.99</strong></p><br>   
+    </div>
+
+<!--Float one div on the left - float the other on the right-->
+<!--Width to 45% each. Could use padding, but to show a diffent path I'll keep the middle 10% blank-->
+
+
+<h2 id="s3">Ramen
+  <button id="rmExpand" onclick="expand(2)">+</button>
+  <button id="rmCollapse" onclick="collapse(2)">-</button>
+  </h2>
+  <div id="ramen" style="display: none;">
+    <p><strong><u>Tonkatsu:</u></strong> Pork Broth, Noodles, Sliced Pork,
+        Garlic, Spring Onion, Egg: $10.99</p>
+    <p><strong><u>Miso:</u></strong> Pork Broth, Noodles, Tofu, Egg,
+        Garlic, Spring Onion, Miso: $9.99</p>
+  </div>
+
+  <h2 id="s4">Bento Boxes
+    <button id="bbExpand" onclick="expand(3)">+</button>
+    <button id="bbCollapse" onclick="collapse(3)">-</button>
+    </h2>
+    <div id="bento" style="display: none;">
+    <p><strong><u>Chicken Teriyaki Bento Box:</u></strong> Teriyaki chicken
+         served with Japanese Pork Dumplings and ½ California Roll: $13.99 </p>
+    <p><strong><u>Tempura Bento Box:</u></strong> Tempura vegetables
+         served with Japanese Pork Dumplings and ½ California Roll
+        : $13.99 </p>     
+      </div>
+
+
+</body>
+<script>
+  // Automatic Slideshow
+  let slideIndex = 0;
+  showSlides();
+  
+  function showSlides() {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
+  
+    // Hide all slides
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+    }
+    slideIndex++; //increment the slideIndex 
+    if (slideIndex > slides.length) {slideIndex = 1}    
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", ""); //remove the active class from all dots
+    }
+    slides[slideIndex-1].style.display = "block";  //show the current slide
+    dots[slideIndex-1].className += " active";    // add the active class to the current dot
+    setTimeout(showSlides, 4000); // Change image and dot every 4 seconds
+  }
+
+  function expand(e){
+    if (e == 1){
+    document.getElementById('sushi').style.setProperty('display', 'block')
+    }
+    else if (e == 2) {
+    document.getElementById('ramen').style.setProperty('display', 'block')
+    }
+    else if (e == 3) {
+    document.getElementById('bento').style.setProperty('display', 'block')
+    }
+    else if (e == 4) {
+    document.getElementById('poke').style.setProperty('display', 'block')
+    }
+  }
+  function collapse(e){
+    if (e == 1){
+    document.getElementById('sushi').style.setProperty('display', 'none')
+    }
+    else if (e == 2) {
+    document.getElementById('ramen').style.setProperty('display', 'none')
+    }
+    else if (e == 3) {
+    document.getElementById('bento').style.setProperty('display', 'none')
+    }
+    else if (e == 4) {
+    document.getElementById('poke').style.setProperty('display', 'none')
+    }
+  }
+  
+var c = document.getElementById("canvas1");
+var ctx = c.getContext("2d");
+ctx.font = "30px Arial";
+ctx.fillText("We have so much tea!", 10, 30);
+ctx.fillText("Soft Drinks (Coke)!", 10, 70);
+ctx.fillText("And Coffee!", 10, 110);
+ 
+    </script>
+<footer>
+  <strong>Accessibility Statement</strong>
+  <p>Chopstick follows the section 508 Standards
+  and WCAG 2.1 for web accessibility.
+  If you require this content in another format,
+  <a href ="mailto:michael.mcleod@ung.edu">please send an
+       email to our team.</a></p>
+</footer>
+</html> 
