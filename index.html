@@ -10,24 +10,32 @@
 <body>
 
     <div id="navbar"></div>
-    <!-- Sliding pics? -->
-    <!-- <div class="event-container" id="image-slider">
-        <div class="image-slider">
-            <img class="slide" src="fellowshipimg.jpg" alt="Fellowship1" />
-            <img class="slide" src="fellowship2img.jpg" alt="Fellowship2" />
-        </div> -->
-    <div style="position: relative;">
+    <div id="main content" style="position: relative;">
+
         <h1 style="text-align: center; font-family: 'Georgia'">Fellowship</h1>
         <p>An event hall for all occasions.</p>
+
+
     </div>
-        <script>
+    
+    
+    
+    <div id="footer"></div>
+    <script>
         // get the navbar element in sourcefiles/navbar.html and insert it here
         fetch('sourcefiles/navbar.html')
         .then(response => response.text())
         .then(data => {
         document.getElementById('navbar').innerHTML = data;
-  });
+        });
+
+        fetch('sourcefiles/footer.html')
+        .then(response => response.text())
+        .then(data => {
+        document.getElementById('footer').innerHTML = data;
+        });
     </script>
+
 
 </body>
 
