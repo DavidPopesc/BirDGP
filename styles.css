@@ -21,4 +21,22 @@
     height: 100vh;
     object-fit: cover;
     flex-shrink: 0;
+} 
+
+.navbar {
+    /* background-color: #333; */
+    overflow: hidden;
+    text-align: center;
 }
+ .navbar li {
+    display: inline-flex;
+    font-size: 36px;
+}
+
+
+  /* text-align: center;
+  using professor's website css as a reference
+  background: rgba(60, 60, 54, 0.326);
+  line-height: 50px;
+  word-spacing: 100px; space between words, I started at 20 and moved up to 50 then 70
+  font-size: 20px; */
