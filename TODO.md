@@ -6,6 +6,3 @@
 
 If you complete any of these tasks make sure to fill the checkbox
 It's also a good idea to sign your name after the completed task
-Ex. 
-
-Happy Birthday Piper!
