@@ -1,0 +1,24 @@
+/* Sliding pics? */
+.event-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.image-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: calc(100vw * 8);
+    height: 100%;
+    z-index: 1;
+}
+
+.image-slider img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    flex-shrink: 0;
+}
