@@ -1,32 +1,44 @@
 <style>
     nav {
-        background-color: #646464;
         overflow: hidden;
+        display: flex;
+        align-items: center;
+        padding: 0 16px;
+        border-bottom: 2px solid #222;
+    }
+
+    nav img {
+        height: 40px;
+        margin-right: 10px;
+        vertical-align: middle;
     }
 
     nav ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
+        display: flex;
+        align-items: center;
     }
 
     nav ul li {
-        float: left;
+        /* No float needed with flex */
     }
 
     nav ul li a {
         display: block;
-        color: white;
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;
+        color: rgb(129, 100, 63);
     }
 
     nav ul li a:hover {
-        background-color: #111;
+        background-color: #d3d3d3;
     }
 </style>
 <nav>
+    <img src="sourcefiles/logo.png" alt="Fellowship Logo">
     <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
