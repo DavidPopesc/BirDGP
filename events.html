@@ -4,7 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Event Packages | Venue Name</title>
-  <style>
+</head>
+<body>
+
+
+
+</body>
+</html>
+
+
+<!--  -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fellowship Event Hall</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -77,10 +99,12 @@
       margin-top: 40px;
     }
   </style>
-</head>
-<body>
 
-  <header>
+    <div id="navbar"></div>
+    <div id="main content" style="position: relative;">
+
+
+        <header>
     <h1>Event Packages</h1>
   </header>
 
@@ -136,5 +160,31 @@
     &copy; 2025 Fellowship | 2875 Winder Hwy, Dacula, GA
   </footer>
 
+
+
+    </div>
+    
+    
+    
+    <div id="footer"></div>
+    <script>
+        // get the navbar element in sourcefiles/navbar.html and insert it here
+        fetch('sourcefiles/navbar.html')
+        .then(response => response.text())
+        .then(data => {
+        document.getElementById('navbar').innerHTML = data;
+        });
+
+        fetch('sourcefiles/footer.html')
+        .then(response => response.text())
+        .then(data => {
+        document.getElementById('footer').innerHTML = data;
+        });
+    </script>
+
+
 </body>
+
+
+
 </html>
