@@ -10,24 +10,75 @@
 <body>
 
     <div id="navbar"></div>
-    <!-- Sliding pics? -->
-    <!-- <div class="event-container" id="image-slider">
-        <div class="image-slider">
-            <img class="slide" src="fellowshipimg.jpg" alt="Fellowship1" />
-            <img class="slide" src="fellowship2img.jpg" alt="Fellowship2" />
-        </div> -->
-    <div style="position: relative;">
-        <h1 style="text-align: center; font-family: 'Georgia'">Fellowship</h1>
-        <p>An event hall for all occasions.</p>
+    <div id="main content" style="position: relative;">
+
+            <div style="display: flex; justify-content: center;
+            background-image: linear-gradient(rgba(32, 32, 32, 0.5), rgba(0,0,0,0.5)), url('sourcefiles/fellowshipimg.jpg');
+
+            background-size: cover;
+            background-position: center;
+            padding: 5%
+            ">
+                <img src="sourcefiles/full-logo.png" alt="Fellowship Logo" style="height: 300px;">
+            </div>
+
+                    <div style="padding: 0% 5% 0% 5%;">
+            
+
+        <!-- <h1 style="text-align: center; font-family: 'Georgia'">Fellowship</h1> -->
+        <p style="font-family: 'Georgia'; font-size: 1.2em;">
+            Welcome to Fellowship Event Hall - the place to host your unforgettable events. Whether you're planning a wedding, corporate gathering, birthday party, or any special occasion, our spacious and elegant venue is designed to accommodate your needs.
+        </p>
+        
+
+        <div style="padding: 0% 5% 5% 5%;">
+            <h2 style="font-family: 'Georgia'">Why Choose Us?</h2>
+            <ul style="font-family: 'Georgia'; font-size: 1.1em;">
+                <li>Spacious Halls: Our event halls can accommodate both small and large gatherings with ease.</li>
+                <li>Customizable Setups: Tailor the venue layout to suit your event's theme and requirements.</li>
+                <li>Catering Options: Choose from a variety of catering packages to delight your guests.</li>
+                <li>Professional Staff: Our experienced team is dedicated to ensuring your event runs smoothly.</li>
+                <li>Convenient Location: Easily accessible with ample parking for your guests.</li>
+            </ul>
+        </div>
+
+
+
+        <div style="
+        background-image: linear-gradient(rgba(32, 32, 32, 0.5), rgba(0,0,0,0.5)), url('sourcefiles/fellowship2img.jpg');
+
+        justify-content: center;
+        background-size: cover;
+        background-position: center;
+        padding: 10%;
+        ">
+            <h2 style="font-family: 'Georgia'">Book Your Event Today!</h2>
+            <p style="font-family: 'Georgia'; font-size: 1.2em;">
+                Ready to make your event unforgettable? Contact us today to check availability and book your date at Fellowship Event Hall. We look forward to hosting your special occasion!
+            </p>
+
+        </div>
+
     </div>
-        <script>
+    
+    
+    
+    <div id="footer"></div>
+    <script>
         // get the navbar element in sourcefiles/navbar.html and insert it here
         fetch('sourcefiles/navbar.html')
         .then(response => response.text())
         .then(data => {
         document.getElementById('navbar').innerHTML = data;
-  });
+        });
+
+        fetch('sourcefiles/footer.html')
+        .then(response => response.text())
+        .then(data => {
+        document.getElementById('footer').innerHTML = data;
+        });
     </script>
+
 
 </body>
 
