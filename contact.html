@@ -65,14 +65,10 @@
 
     /* Image layers for crossfade */
     .hero-img {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      will-change: opacity;
-      transition: opacity 2s ease-in-out;
-      filter: brightness(0.5); /* Slightly darkens the images */
+      position:absolute; inset:0;
+      background-size:cover; background-position:center;
+      opacity:0; will-change:opacity;
+      transition:opacity 2s ease-in-out;
     }
     .hero-img.active { opacity:1; }
 
@@ -129,6 +125,80 @@
     @media (prefers-reduced-motion: reduce) {
       .hero::before, .hero::after, .hero-img { animation:none; transition:none; }
     }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f3f4f6;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333333;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    label {
+      font-weight: bold;
+      color: #555555;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .contact-info {
+      margin-top: 20px;
+      text-align: center;
+      color: #555555;
+    }
+
+    .contact-info p {
+      margin: 5px 0;
+    }
+
+    .contact-info a {
+      color: #4CAF50;
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
   </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -139,51 +209,26 @@
 
 <body>
   <div id="navbar"></div>
+    <div class="container">
+        <h1>Contact Us</h1>
+        <form>
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
-  <!-- HERO with auto crossfade -->
-  <div id="main content">
-    <header class="hero" id="hero"
-      data-images='[
-        "sourcefiles/fellowshipimg.jpg",
-        "sourcefiles/fellowship2img.jpg"
-      ]'>
-      <div class="hero-img active" id="heroA"></div>
-      <div class="hero-img" id="heroB"></div>
-      <div class="hero-gradient"></div>
-      <img src="sourcefiles/full-logo.png" alt="Fellowship Event Hall Logo" style="position: absolute; top: 46%; left: 50%; transform: translate(-50%, -50%); width: 350px; height: auto; z-index: 10;">
-    </header>
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-    <div class="wrap">
-      <section class="card slide-in">
-        <p style="font-size:1.1rem;color:var(--ink-2);">
-          Welcome to Fellowship Event Hall — the place to host your unforgettable events. Whether you're planning a wedding,
-          corporate gathering, birthday party, or any special occasion, our spacious and elegant venue is designed to accommodate your needs.
-        </p>
-      </section>
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Write your message here" required></textarea>
 
-      <section class="card slide-in">
-        <h2>Why Choose Us?</h2>
-        <ul style="font-size:1.05rem;color:var(--ink-2);">
-          <li>Spacious halls for any event size</li>
-          <li>Customizable layouts for your theme</li>
-          <li>Delicious catering packages</li>
-          <li>Professional, caring staff</li>
-          <li>Ample parking and convenient location</li>
-        </ul>
-      </section>
-
-      <section class="panel slide-in">
-        <h2 style="font-family:'Lobster',cursive;font-size:clamp(1.8rem,3.5vw,2.6rem);margin:0 0 .4rem;">
-          Book Your Event Today!
-        </h2>
-        <p style="font-size:1.15rem;max-width:60ch;">
-          Ready to make your event unforgettable? Contact us today to check availability and reserve your date at Fellowship Event Hall.
-          We can’t wait to host your celebration!
-        </p>
-      </section>
+            <button type="submit">Send Message</button>
+        </form>
+        <div class="contact-info">
+            <p>Phone: <a href="tel:+123456789">+1 234 567 89</a></p>
+            <p>Email: <a href="mailto:info@fellowshiphall.com">info@fellowshiphall.com</a></p>
+            <p>Address: 123 Fellowship Street, Event City, EC 12345</p>
+        </div>
     </div>
-  </div>
-
   <div id="footer"></div>
 
   <!-- ===== JAVASCRIPT ===== -->
@@ -196,66 +241,7 @@
       .then(r=>r.text())
       .then(html=>document.getElementById('footer').innerHTML = html);
 
-    // ===== HERO Auto Crossfade Logic =====
-    (function(){
-      const hero = document.getElementById('hero');
-      const imgA = document.getElementById('heroA');
-      const imgB = document.getElementById('heroB');
-      const list = (JSON.parse(hero.getAttribute('data-images') || '[]') || []);
-      if (!list.length) return;
 
-      // preload
-      list.forEach(src => { const im = new Image(); im.src = src; });
-
-      let idx = 0, usingA = true, timer = null;
-      imgA.style.backgroundImage = `url("${list[0]}")`;
-      imgA.classList.add('active');
-
-      function swapTo(nextIdx){
-        const nextSrc = list[nextIdx % list.length];
-        const show = usingA ? imgB : imgA;
-        const hide = usingA ? imgA : imgB;
-        show.style.backgroundImage = `url("${nextSrc}")`;
-        show.classList.add('active');
-        requestAnimationFrame(()=>{
-          hide.classList.remove('active');
-          usingA = !usingA;
-          idx = nextIdx % list.length;
-        });
-      }
-
-      function startCycle(){
-        if (timer) return;
-        timer = setInterval(()=>swapTo(idx+1), 5000); // every 5s
-      }
-      function stopCycle(){
-        clearInterval(timer);
-        timer = null;
-      }
-
-      // Auto start, pause on hover
-      startCycle();
-      hero.addEventListener('mouseenter', stopCycle, {passive:true});
-      hero.addEventListener('mouseleave', startCycle, {passive:true});
-    })();
-
-    // ===== Slide-in Fade-in Animation =====
-    (function(){
-      const items = Array.from(document.querySelectorAll('.slide-in'));
-      if (!items.length) return;
-      const io = new IntersectionObserver((entries, obs) => {
-        entries.forEach(e => {
-          if (!e.isIntersecting) return;
-          const i = items.indexOf(e.target);
-          e.target.style.transitionDelay = (i * 90) + 'ms';
-          requestAnimationFrame(() => {
-            e.target.classList.add('visible');
-            obs.unobserve(e.target);
-          });
-        });
-      }, { threshold:0.12, rootMargin:'0px 0px -10% 0px' });
-      items.forEach(el => io.observe(el));
-    })();
-  </script>
+      </script>
 </body>
 </html>
