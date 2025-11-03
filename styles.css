@@ -97,10 +97,13 @@ ul {
     padding-left: 20px;
 }
 
-footer {
-    background: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-}
+    /* Footer */
+    footer {
+      background: rgba(215, 238, 255, 0.9);
+      color: #4b4b4b;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      margin-top: 40px;
+      border-radius: var(--radius) var(--radius) 0 0;
+      font-size: small;
+    }
