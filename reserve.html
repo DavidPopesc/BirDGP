@@ -278,6 +278,29 @@
                 localStorage.setItem('reservationData', JSON.stringify(reservationData));
                 window.location.href = 'receipt.html';
             });
+
+            form.addEventListener('reset', function() {
+                // Clear selected options
+                selectedOptions.clear();
+
+                // Reset the price to $0
+                priceElement.textContent = 'Total Price: $0';
+
+                // Remove visual selections for specific groups
+                const groupsToReset = ['#event-type-options', '#catering-options', '#extra-services-options', '#decorations-options', '#photography-options'];
+                groupsToReset.forEach(groupId => {
+                    const group = document.querySelector(groupId);
+                    if (group) {
+                        const options = group.querySelectorAll('div');
+                        options.forEach(option => {
+                            option.style.border = 'none';
+                        });
+                    }
+                });
+
+                // Hide theme colors section
+                document.getElementById('theme-colors').style.display = 'none';
+            });
         </script>
     </div>
     
