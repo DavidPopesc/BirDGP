@@ -5,265 +5,210 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Fellowship Event Hall – About</title>
 
-  <!-- External CSS  -->
   <link rel="stylesheet" href="/styles.css" />
-  <!-- Lobster font for headings -->
   <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet" />
-  <!-- Font  -->
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         crossorigin="anonymous" />
+  <link rel="icon" type="image/x-icon" href="sourcefiles/logo.ico" />
 
   <style>
-    /* ================= Cloudy Blue Theme (thank you for AI labling lol) ================= */
-    :root{
-      --sky-0:#f0f6ff;   /* lightest sky */
-      --sky-1:#e6f0ff;   /* soft blue */
-      --sky-2:#dbeafe;   /* sky wash */
-      --ink:#0f172a;     /* deep slate text */
-      --ink-2:#334155;   /* secondary text */
-      --head:#0b3b77;    /* heading blue */
-      --card:#ffffff;    /* card base */
-      --ring:#93c5fd;    /* focus ring */
-      --link:#2563eb;    /* link */
-      --link-h:#1d4ed8;  /* link hover */
-      --shadow:0 10px 28px rgba(15, 30, 60, .12);
-      --radius:16px;
+    /* ===== Cloudy Blue Theme (Unified with Home & Events) ===== */
+    :root {
+      --sky-0:#f0f6ff; --sky-1:#e6f0ff; --sky-2:#dbeafe;
+      --ink:#0f172a; --ink-2:#334155; --head:#0b3b77;
+      --ring:#93c5fd; --shadow:0 10px 28px rgba(15,30,60,.12);
+      --radius:16px; --accent-start:#4f8df6; --accent-end:#7db8ff;
     }
 
-    /* Soft multi-stop gradient like sunlit clouds */
-    body{
-      margin:0;
+    html,body { margin:0; padding:0; }
+    body {
       color:var(--ink);
       font-family:"Segoe UI", Roboto, Arial, sans-serif;
       line-height:1.65;
       background:
         radial-gradient(1200px 600px at 80% -10%, #fff8f1 0%, transparent 60%),
         radial-gradient(900px 500px at -10% 10%, #eaf2ff 0%, transparent 60%),
-        linear-gradient(180deg, var(--sky-0) 0%, var(--sky-1) 40%, var(--sky-2) 100%);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+        linear-gradient(180deg,var(--sky-0)0%,var(--sky-1)40%,var(--sky-2)100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
-    a{ color:var(--link); text-decoration:none; transition:color .2s ease, filter .2s ease; }
-    a:hover{ color:var(--link-h); filter:brightness(1.03); }
+    a { color:#2563eb; text-decoration:none; transition:color .2s ease,filter .2s ease; }
+    a:hover { color:#1d4ed8; filter:brightness(1.05); }
 
-    .lobster-text{ font-family:'Lobster', cursive; color:var(--head); }
+    .lobster-text { font-family:'Lobster',cursive; color:var(--head); }
+    main { padding:0 1rem; }
 
-    main{ padding:0 1rem; }
-
-    /* Sections: light card on blue background; no heavy white blocks */
-    section{
-      max-width: 980px;
-    /* Global dark theme */
-    body {
-      background-color: #000;
-      color: #eee;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
-
-    .lobster-text {
-      font-family: 'Lobster', cursive;
-      color: #fff;
-    }
-
-    main {
-      padding: 0 1rem;
-    }
-
+    /* ===== Section / Card Styles ===== */
     section {
-      max-width: 900px;
-      margin: 2rem auto;
-      background: rgba(255,255,255,.82);
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(147,197,253,.25);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1.5rem;
+      max-width:980px;
+      margin:2rem auto;
+      background:rgba(255,255,255,.86);
+      backdrop-filter:blur(5px);
+      border:1px solid rgba(147,197,253,.25);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:1.5rem;
     }
+    section h2 { text-align:center; margin:0 0 1rem; color:var(--head); }
 
-    section h2{
-      text-align:center; margin:0 0 1rem; color:var(--head); letter-spacing:.2px;
+    /* ===== About Header ===== */
+    #about-header {
+      background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,.35));
+      text-align:center;
+      border:none;
+      box-shadow:none;
+      margin-top:2rem;
     }
+    #about-header h1 { margin:.2rem 0 .3rem; }
+    #about-header p { color:var(--ink-2); margin:.2rem 0 0; }
 
-    /* Header section—no overlay that could wash out */
-    #about-header{
-      background: linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.35));
-      text-align:center; margin-top:2rem;
-    }
-    #about-header h1{ margin:.2rem 0 .3rem; }
-    #about-header p{ color:var(--ink-2); margin:.2rem 0 0; font-family:inherit; }
-
-    /* ========== Venue Gallery ========== */
-    .venue-images{
+    /* ===== Gallery ===== */
+    .venue-images {
       display:flex; flex-wrap:wrap; gap:1rem; justify-content:center;
     }
-    .venue-images img{
+    .venue-images img {
       display:block; width:100%; max-width:460px; height:auto;
-      border-radius: 14px;
-      box-shadow: 0 10px 26px rgba(13, 37, 90, .16);
-      transition: transform .25s ease, box-shadow .25s ease;
-      /* no opacity/filter here to avoid "washed out" it looked black weird  */
+      border-radius:14px;
+      box-shadow:0 10px 26px rgba(13,37,90,.16);
+      transition:transform .25s ease, box-shadow .25s ease;
     }
-    .venue-images img:hover{
-      transform: translateY(-2px) scale(1.01);
-      box-shadow: 0 18px 36px rgba(13, 37, 90, .22);
+    .venue-images img:hover {
+      transform:translateY(-2px) scale(1.01);
+      box-shadow:0 18px 36px rgba(13,37,90,.22);
     }
 
-/* Slide-in (AI optimized ngl) */
-.slide-in {
-  opacity: 0;
-  transform: translateY(24px) scale(.985);
-  will-change: transform, opacity;
-  transition:
-    opacity .55s ease-out,
-    transform .55s cubic-bezier(.22,.61,.36,1);
-}
-.slide-in.visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-
-    @media (max-width: 600px){ .venue-images img{ max-width:100%; } }
-
-    /* Map */
-    .map-container{
+    /* ===== Map ===== */
+    .map-container {
       position:relative; width:100%; padding-bottom:75%; height:0; margin:1rem 0;
-      border-radius:14px; overflow:hidden; box-shadow: 0 10px 26px rgba(13, 37, 90, .16);
+      border-radius:14px; overflow:hidden; box-shadow:0 10px 26px rgba(13,37,90,.16);
     }
-    .map-container iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+    .map-container iframe {
+      position:absolute; inset:0; width:100%; height:100%; border:0;
+    }
 
-    /* Social buttons */
-    .socials-wrap{ display:flex; justify-content:center; gap:.8rem; flex-wrap:wrap; }
-    .btn{
+    /* ===== Social Buttons ===== */
+    .socials-wrap { display:flex; justify-content:center; gap:.8rem; flex-wrap:wrap; }
+    .btn {
       display:inline-flex; align-items:center; gap:.45rem;
       padding:.7rem 1.05rem; border-radius:999px; color:#fff;
-      background: linear-gradient(135deg, #4f8df6, #7db8ff);
-      box-shadow: 0 10px 22px rgba(60,110,220,.25);
-      position:relative; overflow:hidden; transform:translateZ(0);
-      transition: transform .18s ease, box-shadow .18s ease, filter .2s ease;
+      background:linear-gradient(135deg,var(--accent-start),var(--accent-end));
+      box-shadow:0 10px 22px rgba(60,110,220,.25);
+      transition:transform .18s ease, box-shadow .18s ease, filter .2s ease;
     }
-    .btn:hover{ transform: translateY(-2px); box-shadow: 0 16px 30px rgba(60,110,220,.28); filter:saturate(1.05); }
-    .btn:active{ transform: translateY(0); box-shadow: 0 8px 18px rgba(60,110,220,.22); }
-    .btn:focus-visible{ outline:2px solid var(--ring); outline-offset:3px; }
-    .btn::after{
-      content:""; position:absolute; inset:-140% -30%;
-      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.35) 50%, transparent 100%);
-      transform: translateX(-60%) rotate(16deg);
-      transition: transform .8s ease; pointer-events:none;
+    .btn:hover {
+      transform:translateY(-2px);
+      box-shadow:0 16px 30px rgba(60,110,220,.28);
+      filter:saturate(1.05);
     }
-    .btn:hover::after{ transform: translateX(120%) rotate(16deg); }
-    .btn i{ margin-right:.25rem; }
+    .btn:focus-visible { outline:2px solid var(--ring); outline-offset:3px; }
 
-    /* Credit */
-    .design-credit img{
-      max-height:40px; opacity:.9; transition:opacity .2s ease, transform .2s ease;
-      filter: drop-shadow(0 8px 16px rgba(15,30,60,.18));
+    /* ===== Slide-in / Fade-in ===== */
+    .slide-in {
+      opacity:0;
+      transform:translateY(24px) scale(.985);
+      will-change:transform,opacity;
+      transition:opacity .6s ease-out,transform .6s cubic-bezier(.22,.61,.36,1);
     }
-    .design-credit img:hover{ opacity:1; transform: translateY(-2px); }
+    .slide-in.visible {
+      opacity:1;
+      transform:translateY(0) scale(1);
+    }
 
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      .slide-in.visible{ transition:none; }
-      .btn, .btn::after, .venue-images img{ transition:none; }
+    /* ===== Footer Credit ===== */
+    .design-credit img {
+      max-height:40px;
+      opacity:.9;
+      transition:opacity .2s ease,transform .2s ease;
+      filter:drop-shadow(0 8px 16px rgba(15,30,60,.18));
+    }
+    .design-credit img:hover { opacity:1; transform:translateY(-2px); }
+
+    @media (prefers-reduced-motion:reduce) {
+      .slide-in.visible,.venue-images img,.btn { transition:none; }
     }
   </style>
-  
-  <link rel="icon" type="image/x-icon" href="sourcefiles/logo.ico">
 </head>
+
 <body>
-  <!-- Navbar include -->
   <div id="navbar-placeholder"></div>
 
   <main>
-    <!-- Header -->
     <section id="about-header" class="lobster-text">
       <h1>About Fellowship Event Hall</h1>
       <p>Gentle light, open space, and a smooth experience for every event.</p>
     </section>
 
-    <!-- Content -->
-    <section id="about-content">
-      <p style="color:var(--ink-2)">Lorem Ipsum</p>
-      <p style="color:var(--ink-2)">Lorem Ipsum</p>
+    <section id="about-content" class="slide-in">
+      <p style="color:var(--ink-2)">At Fellowship Event Hall, we believe every gathering deserves elegance and care. From intimate celebrations to grand weddings, our venue provides the perfect setting for unforgettable memories.</p>
+      <p style="color:var(--ink-2)">Our dedicated team ensures that your event runs smoothly, offering a welcoming atmosphere and professional support from start to finish.</p>
     </section>
 
-    <!-- Gallery  -->
-    <section id="venue-gallery">
+    <section id="venue-gallery" class="slide-in">
       <h2>Our Venue</h2>
       <div class="venue-images">
-        <img src="sourcefiles/fellowship2img.jpg" alt="Venue Image 1" class="slide-in reveal" />
-        <img src="sourcefiles/fellowshipimg.jpg" alt="Venue Image 2" class="slide-in reveal" />
+        <img src="sourcefiles/fellowship2img.jpg" alt="Venue Image 1" class="slide-in" />
+        <img src="sourcefiles/fellowshipimg.jpg" alt="Venue Image 2" class="slide-in" />
       </div>
     </section>
 
-    <!-- Map -->
-    <section id="location">
+    <section id="location" class="slide-in">
       <h2>Find Us</h2>
       <div class="map-container">
         <iframe src="https://www.google.com/maps?q=2875+Winder+Hwy,+Dacula,+GA+30019&output=embed"
-                allowfullscreen="" loading="lazy"></iframe>
+                allowfullscreen loading="lazy"></iframe>
       </div>
-      <p style="text-align:center; font-size:.95rem; color:var(--ink-2);">2875 Winder Hwy, Dacula, GA 30019</p>
+      <p style="text-align:center;font-size:.95rem;color:var(--ink-2);">
+        2875 Winder Hwy, Dacula, GA 30019
+      </p>
     </section>
 
-    <!-- Socials  -->
-    <section id="socials" style="text-align:center;">
+    <section id="socials" class="slide-in" style="text-align:center;">
       <h2>Follow Us</h2>
       <div class="socials-wrap">
-        <a href="https://www.facebook.com/bisericasfantamariadacula" target="_blank"
-           class="btn" aria-label="Visit our Facebook">
-          <i class="fab fa-facebook-f" aria-hidden="true"></i> Facebook
+        <a href="https://www.facebook.com/bisericasfantamariadacula" target="_blank" class="btn">
+          <i class="fab fa-facebook-f"></i> Facebook
         </a>
-        <a href="https://events.saintmaryro.org" target="_blank"
-           class="btn" aria-label="Visit our Instagram">
-          <i class="fab fa-instagram" aria-hidden="true"></i> Instagram
+        <a href="https://events.saintmaryro.org" target="_blank" class="btn">
+          <i class="fab fa-instagram"></i> Instagram
         </a>
       </div>
     </section>
   </main>
 
-  <!-- Footer include -->
   <div id="footer-placeholder"></div>
 
-  <!-- Credit -->
-  <div class="design-credit" style="text-align:center; padding:10px 0;">
+  <div class="design-credit" style="text-align:center;padding:10px 0;">
     <img src="/sourcefiles/webdesign-mark.png" alt="Web Design Mark" />
   </div>
 
-  <!-- Scripts -->
   <script>
-    // Navbar & footer
-    fetch("/sourcefiles/navbar.html")
-      .then(r => r.text())
-      .then(html => { document.getElementById("navbar-placeholder").innerHTML = html; });
+    // Navbar & footer loader
+    fetch("/sourcefiles/navbar.html").then(r=>r.text())
+      .then(html=>document.getElementById("navbar-placeholder").innerHTML=html);
+    fetch("/sourcefiles/footer.html").then(r=>r.text())
+      .then(html=>document.getElementById("footer-placeholder").innerHTML=html);
 
-    fetch("/sourcefiles/footer.html")
-      .then(r => r.text())
-      .then(html => { document.getElementById("footer-placeholder").innerHTML = html; });
-
-    // Slide-in animation lol i have no idea how this works
-    const items = document.querySelectorAll('.slide-in.reveal');
-    const io = 'IntersectionObserver' in window
-      ? new IntersectionObserver((entries, obs) => {
-          entries.forEach(e => {
-            if (e.isIntersecting) {
-              e.target.classList.add('visible');
-              obs.unobserve(e.target);
-            }
+    // Slide-in fade-in animation
+    (function(){
+      const items=[...document.querySelectorAll('.slide-in')];
+      if(!items.length)return;
+      const io=new IntersectionObserver((entries,obs)=>{
+        entries.forEach(e=>{
+          if(!e.isIntersecting)return;
+          const i=items.indexOf(e.target);
+          e.target.style.transitionDelay=(i*90)+'ms';
+          requestAnimationFrame(()=>{
+            e.target.classList.add('visible');
+            obs.unobserve(e.target);
           });
-        }, { threshold: 0.28 })
-      : null;
-
-    items.forEach(el => { if (io) io.observe(el); else el.classList.add('visible'); });
+        });
+      },{threshold:0.12,rootMargin:'0px 0px -10% 0px'});
+      items.forEach(el=>io.observe(el));
+    })();
   </script>
 
-  <!-- No-JS  -->
-  <noscript>
-    <style>.slide-in{opacity:1 !important; transform:none !important;}</style>
-  </noscript>
+  <noscript><style>.slide-in{opacity:1!important;transform:none!important;}</style></noscript>
 </body>
 </html>
