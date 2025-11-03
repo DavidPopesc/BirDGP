@@ -143,6 +143,7 @@
             <h3 id="price" style="text-align: center; margin-top: 16px;">Total Price: $0</h3>
 
             <button type="submit" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">Reserve</button>
+            <button type="reset" style="width: 100%; padding: 10px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px;">Reset</button>
         </form>
 
         <script>
@@ -260,6 +261,23 @@
                 const basePrice = eventTypePrices[type] || 0;
                 priceElement.textContent = `Total Price: $${basePrice}`;
             }
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const reservationData = {
+                    name: document.getElementById('name').value,
+                    phone: document.getElementById('phone').value,
+                    eventType: Array.from(document.querySelectorAll('#event-type-options div')).find(option => option.style.border.includes('solid'))?.textContent.trim() || 'N/A',
+                    startDate: document.getElementById('start-date').value,
+                    endDate: document.getElementById('end-date').value,
+                    options: Array.from(selectedOptions),
+                    price: priceElement.textContent.replace('Total Price: $', '')
+                };
+
+                localStorage.setItem('reservationData', JSON.stringify(reservationData));
+                window.location.href = 'receipt.html';
+            });
         </script>
     </div>
     

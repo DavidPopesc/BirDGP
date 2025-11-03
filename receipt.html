@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Receipt</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="navbar"></div>
+    <div style="max-width: 800px; margin: 50px auto; padding: 20px; background: #f9f9f9; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <h1 style="text-align: center;">Reservation Receipt</h1>
+        <div id="receipt-content" style="font-family: Arial, sans-serif;">
+            <p><strong>Name:</strong> <span id="receipt-name"></span></p>
+            <p><strong>Phone:</strong> <span id="receipt-phone"></span></p>
+            <p><strong>Event Type:</strong> <span id="receipt-event-type"></span></p>
+            <p><strong>Start Date:</strong> <span id="receipt-start-date"></span></p>
+            <p><strong>End Date:</strong> <span id="receipt-end-date"></span></p>
+            <p><strong>Selected Options:</strong></p>
+            <ul id="receipt-options"></ul>
+            <p><strong>Total Price:</strong> <span id="receipt-price"></span></p>
+        </div>
+        <button onclick="window.location.href='reserve.html'" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 20px;">Back to Reservation</button>
+    </div>
+    <script>
+        fetch('sourcefiles/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+
+        const receiptData = JSON.parse(localStorage.getItem('reservationData')) || {};
+        document.getElementById('receipt-name').textContent = receiptData.name || 'N/A';
+        document.getElementById('receipt-phone').textContent = receiptData.phone || 'N/A';
+        document.getElementById('receipt-event-type').textContent = receiptData.eventType || 'N/A';
+        document.getElementById('receipt-start-date').textContent = receiptData.startDate || 'N/A';
+        document.getElementById('receipt-end-date').textContent = receiptData.endDate || 'N/A';
+        document.getElementById('receipt-price').textContent = `$${receiptData.price || 0}`;
+
+        const optionsList = document.getElementById('receipt-options');
+        (receiptData.options || []).forEach(option => {
+            const li = document.createElement('li');
+            li.textContent = option;
+            optionsList.appendChild(li);
+        });
+    </script>
+</body>
+</html>
