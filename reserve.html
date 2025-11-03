@@ -60,10 +60,6 @@
 
             <label for="extra-services" style="display: block; margin-bottom: 8px;">Extra Services</label>
             <div id="extra-services-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
-                <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'decorations')">
-                    <img src="sourcefiles/decorations.jpg" alt="Decorations" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
-                    <p style="margin-top: 8px;">Decorations</p>
-                </div>
                 <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'lighting')">
                     <img src="sourcefiles/lighting.jpg" alt="Lighting" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
                     <p style="margin-top: 8px;">Lighting</p>
@@ -71,6 +67,40 @@
                 <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'sound')">
                     <img src="sourcefiles/sound-system.jpg" alt="Sound System" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
                     <p style="margin-top: 8px;">Sound System</p>
+                </div>
+            </div>
+
+            <label for="decorations" style="display: block; margin-bottom: 8px;">Decorations</label>
+            <div id="decorations-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+                <div style="text-align: center; cursor: pointer;" onclick="selectDecorationOption(this, 'basic-decorations')">
+                    <img src="sourcefiles/basic-decorations.jpg" alt="Basic Decorations" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Basic Decorations</p>
+                </div>
+                <div style="text-align: center; cursor: pointer;" onclick="selectDecorationOption(this, 'enhanced-decorations')">
+                    <img src="sourcefiles/enhanced-decorations.jpg" alt="Enhanced Decorations" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Enhanced Decorations</p>
+                </div>
+            </div>
+
+            <div id="theme-colors" style="display: none; margin-bottom: 16px;">
+                <label for="theme-color" style="display: block; margin-bottom: 8px;">Select Theme Color</label>
+                <div style="display: flex; gap: 16px;">
+                    <div style="text-align: center; cursor: pointer;" onclick="selectThemeColor(this, 'red')">
+                        <img src="sourcefiles/red-theme.jpg" alt="Red Theme" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Red</p>
+                    </div>
+                    <div style="text-align: center; cursor: pointer;" onclick="selectThemeColor(this, 'blue')">
+                        <img src="sourcefiles/blue-theme.jpg" alt="Blue Theme" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Blue</p>
+                    </div>
+                    <div style="text-align: center; cursor: pointer;" onclick="selectThemeColor(this, 'green')">
+                        <img src="sourcefiles/green-theme.jpg" alt="Green Theme" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Green</p>
+                    </div>
+                    <div style="text-align: center; cursor: pointer;" onclick="selectThemeColor(this, 'gold')">
+                        <img src="sourcefiles/gold-theme.jpg" alt="Gold Theme" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Gold</p>
+                    </div>
                 </div>
             </div>
 
@@ -100,9 +130,17 @@
                 if (selectedOptions.has(value)) {
                     selectedOptions.delete(value);
                     element.style.border = 'none';
+
+                    if (value === 'decorations') {
+                        document.getElementById('theme-colors').style.display = 'none';
+                    }
                 } else {
                     selectedOptions.add(value);
                     element.style.border = '2px solid #4CAF50';
+
+                    if (value === 'decorations') {
+                        document.getElementById('theme-colors').style.display = 'block';
+                    }
                 }
                 calculatePrice();
             }
@@ -138,6 +176,44 @@
 
                 selectedOptions.add(value);
                 element.style.border = '2px solid #4CAF50';
+
+                calculatePrice();
+            }
+
+            function selectThemeColor(element, color) {
+                const themeColors = document.getElementById('theme-colors');
+                const options = themeColors.querySelectorAll('div[onclick]');
+
+                options.forEach(option => {
+                    option.style.border = 'none';
+                });
+
+                selectedOptions.delete('theme-color');
+                selectedOptions.add(`theme-color:${color}`);
+                element.style.border = '2px solid #4CAF50';
+
+                calculatePrice();
+            }
+
+            function selectDecorationOption(element, value) {
+                const decorationsGroup = document.getElementById('decorations-options');
+                const options = decorationsGroup.querySelectorAll('div');
+
+                options.forEach(option => {
+                    option.style.border = 'none';
+                });
+
+                selectedOptions.delete('basic-decorations');
+                selectedOptions.delete('enhanced-decorations');
+
+                selectedOptions.add(value);
+                element.style.border = '2px solid #4CAF50';
+
+                if (value === 'enhanced-decorations') {
+                    document.getElementById('theme-colors').style.display = 'block';
+                } else {
+                    document.getElementById('theme-colors').style.display = 'none';
+                }
 
                 calculatePrice();
             }
