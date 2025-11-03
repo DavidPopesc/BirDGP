@@ -1,6 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Packages | Fellowship Event Hall</title>
+
+  <!-- Shared Styles -->
+  <link rel="stylesheet" href="/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet" />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" />
+
+  <style>
+    /* ================= Cloudy Blue Theme ================= */
+    :root {
+      --sky-0:#f0f6ff;
+      --sky-1:#e6f0ff;
+      --sky-2:#dbeafe;
+      --ink:#0f172a;
+      --ink-2:#334155;
+      --head:#0b3b77;
+      --ring:#93c5fd;
+      --link:#2563eb;
+      --link-h:#1d4ed8;
+      --shadow:0 10px 28px rgba(15,30,60,.12);
+      --radius:16px;
+      --accent-start:#4f8df6;
+      --accent-end:#7db8ff;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.65;
+      background:
+        radial-gradient(1200px 600px at 80% -10%, #fff8f1 0%, transparent 60%),
+        radial-gradient(900px 500px at -10% 10%, #eaf2ff 0%, transparent 60%),
+        linear-gradient(180deg, var(--sky-0) 0%, var(--sky-1) 40%, var(--sky-2) 100%);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: var(--link); text-decoration: none; transition: color .2s ease, filter .2s ease; }
+    a:hover { color: var(--link-h); filter: brightness(1.03); }
+
+header {
+  height: 320px;
+  background:
+    linear-gradient(180deg, var(--sky-0) 0%, var(--sky-1) 40%, var(--sky-2) 100%),
+    url('packages-banner.jpg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 0 0 var(--radius) var(--radius);
+  box-shadow: var(--shadow);
+  color: var(--head);
+  text-shadow: 0 2px 6px rgba(255,255,255,.6);
+  position: relative;
+  overflow: hidden;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.5), rgba(240,249,255,0));
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+
+    header h1 {
+      position: relative;
+      z-index: 1;
+      font-family: 'Lobster', cursive;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      letter-spacing: .4px;
+    }
+
+    .subheader {
+      text-align: center;
+      font-size: 1.1rem;
+      color: var(--ink-2);
+      margin-top: 32px;
+      padding: 0 20px;
+    }
+
+    /* Container for packages */
+    .container {
+      max-width: 1000px;
+      margin: 2.5rem auto;
+      padding: 0 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* Package cards */
+    .package {
+      background: rgba(255,255,255,.86);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(147,197,253,.25);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .package:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 36px rgba(13, 37, 90, .22);
+    }
+
+    .package h2 {
+      margin-top: 0;
+      font-size: 1.6em;
+      color: var(--head);
+    }
+
+    .package-price {
+      color: #0ea37a;
+      font-weight: 700;
+      font-size: 1.2em;
+      margin: 8px 0 14px;
+    }
+
+    .package-details {
+      color: var(--ink-2);
+      font-size: .98rem;
+      line-height: 1.6;
+    }
+
+    ul { padding-left: 20px; }
+
+    /* Call-to-action buttons */
+    .actions {
+      text-align: center;
+      margin: 2rem auto 1rem;
+      display: flex;
+      justify-content: center;
+      gap: .8rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .7rem 1.1rem;
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+      box-shadow: 0 10px 22px rgba(60,110,220,.25);
+      position: relative;
+      overflow: hidden;
+      transform: translateZ(0);
+      transition: transform .18s ease, box-shadow .18s ease, filter .2s ease;
+      font-weight: 500;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 30px rgba(60,110,220,.28);
+      filter: saturate(1.05);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: 0 8px 18px rgba(60,110,220,.22);
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--ring);
+      outline-offset: 3px;
+    }
+
+    .btn::after {
+      content: "";
+      position: absolute;
+      inset: -140% -30%;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.35) 50%, transparent 100%);
+      transform: translateX(-60%) rotate(16deg);
+      transition: transform .8s ease;
+      pointer-events: none;
+    }
+
+    .btn:hover::after {
+      transform: translateX(120%) rotate(16deg);
+    }
+
+    .btn i { margin-right: .25rem; }
+
+    /* Footer */
+    footer {
+      background: rgba(15,30,60,.9);
+      color: #fff;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      margin-top: 40px;
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fellowhip</title>
@@ -29,11 +231,16 @@
 
 <body>
 
-    <div id="navbar"></div>
-    <div id="main content" style="position: relative;">
+    @media (prefers-reduced-motion: reduce) {
+      .btn, .btn::after, .package { transition: none; }
+    }
+  </style>
+</head>
 
+<body>
+  <div id="navbar"></div>
 
-        <header>
+  <header>
     <h1>Event Packages</h1>
   </header>
 
@@ -41,8 +248,12 @@
     *All packages include tables, tablecloths, chairs, and chair covers.*
   </div>
 
-  <div class="container">
+  <div class="actions">
+    <a href="/contact.html" class="btn"><i class="fa-regular fa-calendar-check"></i> Book a Tour</a>
+    <a href="tel:+1-000-000-0000" class="btn"><i class="fa-solid fa-phone"></i> Call to Inquire</a>
+  </div>
 
+  <div class="container">
     <div class="package">
       <h2>Intimate Gathering Package (Up to 50 Guests)</h2>
       <div class="package-price">$2,000</div>
@@ -82,38 +293,23 @@
         <p>Designed for large-scale events and corporate functions.</p>
       </div>
     </div>
-
   </div>
 
   <footer>
-    &copy; 2025 Fellowship | 2875 Winder Hwy, Dacula, GA
+    &copy; 2025 Fellowship Event Hall | 2875 Winder Hwy, Dacula, GA
   </footer>
 
+  <div id="footer"></div>
 
+  <script>
+    // Navbar/Footer injection (kept functional)
+    fetch('sourcefiles/navbar.html')
+      .then(res => res.text())
+      .then(data => { document.getElementById('navbar').innerHTML = data; });
 
-    </div>
-    
-    
-    
-    <div id="footer"></div>
-    <script>
-        // get the navbar element in sourcefiles/navbar.html and insert it here
-        fetch('sourcefiles/navbar.html')
-        .then(response => response.text())
-        .then(data => {
-        document.getElementById('navbar').innerHTML = data;
-        });
-
-        fetch('sourcefiles/footer.html')
-        .then(response => response.text())
-        .then(data => {
-        document.getElementById('footer').innerHTML = data;
-        });
-    </script>
-
-
+    fetch('sourcefiles/footer.html')
+      .then(res => res.text())
+      .then(data => { document.getElementById('footer').innerHTML = data; });
+  </script>
 </body>
-
-
-
 </html>
