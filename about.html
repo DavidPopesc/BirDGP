@@ -55,6 +55,26 @@
     /* Sections: light card on blue background; no heavy white blocks */
     section{
       max-width: 980px;
+    /* Global dark theme */
+    body {
+      background-color: #000;
+      color: #eee;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    .lobster-text {
+      font-family: 'Lobster', cursive;
+      color: #fff;
+    }
+
+    main {
+      padding: 0 1rem;
+    }
+
+    section {
+      max-width: 900px;
       margin: 2rem auto;
       background: rgba(255,255,255,.82);
       backdrop-filter: blur(4px);
@@ -151,6 +171,8 @@
       .btn, .btn::after, .venue-images img{ transition:none; }
     }
   </style>
+  
+  <link rel="icon" type="image/x-icon" href="sourcefiles/logo.ico">
 </head>
 <body>
   <!-- Navbar include -->

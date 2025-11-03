@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fellowship Event Hall</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="sourcefiles/logo.ico">
+</head>
+
+<body>
+
+    <div id="navbar"></div>
+    <div id="main-content" style="position: relative; padding: 20px; font-family: Arial, sans-serif;">
+        <h1 style="text-align: center;">Reserve Venue</h1>
+        <form id="reserve-form" style="max-width: 850px; margin: 0 auto; background: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <label for="name" style="display: block; margin-bottom: 8px;">Your Name</label>
+            <input type="text" id="name" name="name" style="width: 100%; padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 4px;">
+
+            <label for="phone" style="display: block; margin-bottom: 8px;">Phone Number</label>
+            <input type="tel" id="phone" name="phone" style="width: 100%; padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 4px;">
+
+            <label for="start-date" style="display: block; margin-bottom: 8px;">Start Date</label>
+            <input type="date" id="start-date" name="start-date" style="width: 100%; padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 4px;" min="2025-11-02">
+
+            <label for="end-date" style="display: block; margin-bottom: 8px;">End Date</label>
+            <input type="date" id="end-date" name="end-date" style="width: 100%; padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 4px;">
+
+            <label for="event-type" style="display: block; margin-bottom: 8px;">Event Type</label>
+            <div id="event-type-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'party')">
+                    <img src="sourcefiles/party.jpg" alt="Party" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Party</p>
+                </div>
+                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'company-meeting')">
+                    <img src="sourcefiles/company-meeting.jpg" alt="Company Meeting" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Company Meeting</p>
+                </div>
+                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'company-get-together')">
+                    <img src="sourcefiles/company-get-together.jpg" alt="Company Get Together" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px; ">Company Get Together</p>
+                </div>
+                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'quinceanera')">
+                    <img src="sourcefiles/quinceanera.jpg" alt="Quinceañera" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Quinceañera</p>
+                </div>
+                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'wedding')">
+                    <img src="sourcefiles/wedding.jpg" alt="Wedding" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Wedding</p>
+                </div>
+                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'birthday')">
+                    <img src="sourcefiles/birthday.jpg" alt="Birthday" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Birthday</p>
+                </div>
+                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'conference')">
+                    <img src="sourcefiles/conference.jpg" alt="Conference" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Conference</p>
+                </div>
+                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'other')">
+                    <img src="sourcefiles/other.jpg" alt="Other" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Other</p>
+                </div>
+            </div>
+
+            <label for="catering" style="display: block; margin-bottom: 8px;">Catering Options</label>
+            <div id="catering-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+                <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'italian')">
+                    <img src="sourcefiles/italian-cuisine.jpg" alt="Italian Cuisine" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Italian Cuisine</p>
+                </div>
+                <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'bbq')">
+                    <img src="sourcefiles/bbq.jpg" alt="BBQ" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">BBQ</p>
+                </div>
+                <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'vegan')">
+                    <img src="sourcefiles/vegan-options.jpg" alt="Vegan Options" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Vegan Options</p>
+                </div>
+                <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'desserts')">
+                    <img src="sourcefiles/desserts.jpg" alt="Desserts" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Desserts</p>
+                </div>
+            </div>
+
+            <label for="extra-services" style="display: block; margin-bottom: 8px;">Extra Services</label>
+            <div id="extra-services-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+                <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'lighting')">
+                    <img src="sourcefiles/lighting.jpg" alt="Lighting" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Lighting</p>
+                </div>
+                <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'sound')">
+                    <img src="sourcefiles/sound-system.jpg" alt="Sound System" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Sound System</p>
+                </div>
+            </div>
+
+            <label for="decorations" style="display: block; margin-bottom: 8px;">Decorations</label>
+            <div id="decorations-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+                <div style="text-align: center; cursor: pointer;" onclick="selectDecorationOption(this, 'basic-decorations')">
+                    <img src="sourcefiles/basic-decorations.jpg" alt="Basic Decorations" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Basic Decorations</p>
+                </div>
+                <div style="text-align: center; cursor: pointer;" onclick="selectDecorationOption(this, 'enhanced-decorations')">
+                    <img src="sourcefiles/enhanced-decorations.jpg" alt="Enhanced Decorations" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Enhanced Decorations</p>
+                </div>
+            </div>
+
+            <div id="theme-colors" style="display: none; margin-bottom: 16px;">
+                <label for="theme-color" style="display: block; margin-bottom: 8px;">Select Theme Color</label>
+                <div style="display: flex; gap: 16px;">
+                    <div style="text-align: center; cursor: pointer;" onclick="selectThemeColor(this, 'red')">
+                        <img src="sourcefiles/red-theme.jpg" alt="Red Theme" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Red</p>
+                    </div>
+                    <div style="text-align: center; cursor: pointer;" onclick="selectThemeColor(this, 'blue')">
+                        <img src="sourcefiles/blue-theme.jpg" alt="Blue Theme" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Blue</p>
+                    </div>
+                    <div style="text-align: center; cursor: pointer;" onclick="selectThemeColor(this, 'green')">
+                        <img src="sourcefiles/green-theme.jpg" alt="Green Theme" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Green</p>
+                    </div>
+                    <div style="text-align: center; cursor: pointer;" onclick="selectThemeColor(this, 'gold')">
+                        <img src="sourcefiles/gold-theme.jpg" alt="Gold Theme" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Gold</p>
+                    </div>
+                </div>
+            </div>
+
+            <label for="photography-services" style="display: block; margin-bottom: 8px;">Event Photography Services</label>
+            <div id="photography-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+                <div style="text-align: center; cursor: pointer;" onclick="selectSingleOption(this, 'basic-photography', 'photography-options')">
+                    <img src="sourcefiles/basic-photography.jpg" alt="Basic Photography" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Basic</p>
+                </div>
+                <div style="text-align: center; cursor: pointer;" onclick="selectSingleOption(this, 'premium-photography', 'photography-options')">
+                    <img src="sourcefiles/premium-photography.jpg" alt="Premium Photography" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Premium</p>
+                </div>
+            </div>
+
+            <h3 id="price" style="text-align: center; margin-top: 16px;">Total Price: $0</h3>
+
+            <button type="submit" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">Reserve</button>
+        </form>
+
+        <script>
+            const form = document.getElementById('reserve-form');
+            const priceElement = document.getElementById('price');
+            const selectedOptions = new Set();
+
+            const eventTypePrices = {
+                party: 500,
+                'company-meeting': 300,
+                'company-get-together': 400,
+                quinceanera: 700,
+                wedding: 1000,
+                birthday: 350,
+                conference: 600,
+                other: 1100
+            };
+
+            function toggleSelection(element, value) {
+                if (selectedOptions.has(value)) {
+                    selectedOptions.delete(value);
+                    element.style.border = 'none';
+
+                    if (value === 'decorations') {
+                        document.getElementById('theme-colors').style.display = 'none';
+                    }
+                } else {
+                    selectedOptions.add(value);
+                    element.style.border = '2px solid #4CAF50';
+
+                    if (value === 'decorations') {
+                        document.getElementById('theme-colors').style.display = 'block';
+                    }
+                }
+                calculatePrice();
+            }
+
+            function calculatePrice() {
+                let price = 0;
+
+                selectedOptions.forEach(option => {
+                    if (option === 'italian') price += 300;
+                    if (option === 'bbq') price += 250;
+                    if (option === 'vegan') price += 350;
+                    if (option === 'desserts') price += 150;
+                    if (option === 'decorations') price += 150;
+                    if (option === 'lighting') price += 200;
+                    if (option === 'sound') price += 250;
+                    if (option === 'basic-photography') price += 300;
+                    if (option === 'premium-photography') price += 600;
+                });
+
+                priceElement.textContent = `Total Price: $${price}`;
+            }
+
+            function selectSingleOption(element, value, groupId) {
+                const group = document.getElementById(groupId);
+                const options = group.querySelectorAll('div');
+
+                options.forEach(option => {
+                    option.style.border = 'none';
+                });
+
+                selectedOptions.delete('basic-photography');
+                selectedOptions.delete('premium-photography');
+
+                selectedOptions.add(value);
+                element.style.border = '2px solid #4CAF50';
+
+                calculatePrice();
+            }
+
+            function selectThemeColor(element, color) {
+                const themeColors = document.getElementById('theme-colors');
+                const options = themeColors.querySelectorAll('div[onclick]');
+
+                options.forEach(option => {
+                    option.style.border = 'none';
+                });
+
+                selectedOptions.delete('theme-color');
+                selectedOptions.add(`theme-color:${color}`);
+                element.style.border = '2px solid #4CAF50';
+
+                calculatePrice();
+            }
+
+            function selectDecorationOption(element, value) {
+                const decorationsGroup = document.getElementById('decorations-options');
+                const options = decorationsGroup.querySelectorAll('div');
+
+                options.forEach(option => {
+                    option.style.border = 'none';
+                });
+
+                selectedOptions.delete('basic-decorations');
+                selectedOptions.delete('enhanced-decorations');
+
+                selectedOptions.add(value);
+                element.style.border = '2px solid #4CAF50';
+
+                if (value === 'enhanced-decorations') {
+                    document.getElementById('theme-colors').style.display = 'block';
+                } else {
+                    document.getElementById('theme-colors').style.display = 'none';
+                }
+
+                calculatePrice();
+            }
+
+            function selectEventType(element, type) {
+                const options = document.querySelectorAll('#event-type-options div');
+                options.forEach(option => option.style.border = 'none');
+                element.style.border = '2px solid #4CAF50';
+                const basePrice = eventTypePrices[type] || 0;
+                priceElement.textContent = `Total Price: $${basePrice}`;
+            }
+        </script>
+    </div>
+    
+    
+    
+    <div id="footer"></div>
+    <script>
+        // get the navbar element in sourcefiles/navbar.html and insert it here
+        fetch('sourcefiles/navbar.html')
+        .then(response => response.text())
+        .then(data => {
+        document.getElementById('navbar').innerHTML = data;
+        });
+
+        fetch('sourcefiles/footer.html')
+        .then(response => response.text())
+        .then(data => {
+        document.getElementById('footer').innerHTML = data;
+        });
+    </script>
+
+
+</body>
+
+
+
+</html>
