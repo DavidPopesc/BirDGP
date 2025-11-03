@@ -13,7 +13,7 @@
     <div id="navbar"></div>
     <div id="main-content" style="position: relative; padding: 20px; font-family: Arial, sans-serif;">
         <h1 style="text-align: center;">Reserve Venue</h1>
-        <form id="reserve-form" style="max-width: 600px; margin: 0 auto; background: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <form id="reserve-form" style="max-width: 850px; margin: 0 auto; background: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
             <label for="name" style="display: block; margin-bottom: 8px;">Your Name</label>
             <input type="text" id="name" name="name" style="width: 100%; padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 4px;">
 
@@ -27,16 +27,40 @@
             <input type="date" id="end-date" name="end-date" style="width: 100%; padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 4px;">
 
             <label for="event-type" style="display: block; margin-bottom: 8px;">Event Type</label>
-            <select id="event-type" name="event-type" style="width: 100%; padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 4px;">
-                <option value="party">Party</option>
-                <option value="company-meeting">Company Meeting</option>
-                <option value="company-get-together">Company Get Together</option>
-                <option value="quinceanera">Quinceañera</option>
-                <option value="wedding">Wedding</option>
-                <option value="birthday">Birthday</option>
-                <option value="conference">Conference</option>
-                <option value="other">Other</option>
-            </select>
+            <div id="event-type-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'party')">
+                    <img src="sourcefiles/party.jpg" alt="Party" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Party</p>
+                </div>
+                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'company-meeting')">
+                    <img src="sourcefiles/company-meeting.jpg" alt="Company Meeting" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Company Meeting</p>
+                </div>
+                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'company-get-together')">
+                    <img src="sourcefiles/company-get-together.jpg" alt="Company Get Together" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px; ">Company Get Together</p>
+                </div>
+                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'quinceanera')">
+                    <img src="sourcefiles/quinceanera.jpg" alt="Quinceañera" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Quinceañera</p>
+                </div>
+                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'wedding')">
+                    <img src="sourcefiles/wedding.jpg" alt="Wedding" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Wedding</p>
+                </div>
+                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'birthday')">
+                    <img src="sourcefiles/birthday.jpg" alt="Birthday" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Birthday</p>
+                </div>
+                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'conference')">
+                    <img src="sourcefiles/conference.jpg" alt="Conference" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Conference</p>
+                </div>
+                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'other')">
+                    <img src="sourcefiles/other.jpg" alt="Other" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <p style="margin-top: 8px;">Other</p>
+                </div>
+            </div>
 
             <label for="catering" style="display: block; margin-bottom: 8px;">Catering Options</label>
             <div id="catering-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
@@ -125,6 +149,17 @@
             const form = document.getElementById('reserve-form');
             const priceElement = document.getElementById('price');
             const selectedOptions = new Set();
+
+            const eventTypePrices = {
+                party: 500,
+                'company-meeting': 300,
+                'company-get-together': 400,
+                quinceanera: 700,
+                wedding: 1000,
+                birthday: 350,
+                conference: 600,
+                other: 1100
+            };
 
             function toggleSelection(element, value) {
                 if (selectedOptions.has(value)) {
@@ -216,6 +251,14 @@
                 }
 
                 calculatePrice();
+            }
+
+            function selectEventType(element, type) {
+                const options = document.querySelectorAll('#event-type-options div');
+                options.forEach(option => option.style.border = 'none');
+                element.style.border = '2px solid #4CAF50';
+                const basePrice = eventTypePrices[type] || 0;
+                priceElement.textContent = `Total Price: $${basePrice}`;
             }
         </script>
     </div>
