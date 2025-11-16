@@ -45,7 +45,7 @@
         #reserve-form label { font-weight:600; color:#333; }
         #reserve-form input[type="text"],
         #reserve-form input[type="tel"],
-        #reserve-form input[type="date"] { width:100%; transition:border-color 160ms ease, box-shadow 160ms ease; }
+        #reserve-form input[type="date"] { width:fit-content; transition:border-color 160ms ease, box-shadow 160ms ease; }
         #reserve-form input:focus { outline:none; border-color:#4CAF50 !important; box-shadow:0 0 0 4px rgba(76,175,80,0.25); }
         .option-grid { display:flex; flex-wrap:wrap; gap:16px; }
         .option-card { position:relative; border-radius:12px; overflow:hidden; cursor:pointer; transition:transform 160ms ease, box-shadow 160ms ease, border 160ms ease; border:2px solid transparent; background:#fff; text-align:center; }
@@ -68,11 +68,11 @@
             <form id="reserve-form">
                 <h1 style="text-align: center;">Reserve Venue</h1>
 
-                <label for="name" style="display: block; margin-bottom: 8px;">Your Name *</label>
-                <input type="text" id="name" name="name" required aria-required="true" placeholder="John Doe" style="padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 8px;">
+                <label for="name" style="display: block; margin-bottom: 8px; ">Your Name *</label>
+                <input type="text" id="name" name="name" required aria-required="true" placeholder="John Doe" style="padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 8px; width: 200px;">
 
                 <label for="phone" style="display: block; margin-bottom: 8px;">Phone Number *</label>
-                <input type="tel" id="phone" name="phone" required aria-required="true" pattern="[0-9]{7,15}" title="Enter digits only (7-15)." placeholder="5551234567" style="padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 8px;">
+                <input type="tel" id="phone" name="phone" required aria-required="true" pattern="[0-9]{7,15}" title="Enter digits only (7-15)." placeholder="5551234567" style="padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; width:100px; border-radius: 8px;">
 
 
                 <label for="date" style="display: block; margin-bottom: 8px;">Date *</label>
@@ -303,25 +303,29 @@
                 options.forEach(option => {
                     option.style.border = 'none';
                 });
-
-                selectedOptions.delete('theme-color');
+                // Remove any previously selected theme-color:* entries before adding new
+                Array.from(selectedOptions)
+                    .filter(o => typeof o === 'string' && o.startsWith('theme-color:'))
+                    .forEach(o => selectedOptions.delete(o));
                 selectedOptions.add(`theme-color:${color}`);
                 element.style.border = '2px solid #4CAF50';
+                const formBox = document.getElementById('formbox');
+                // Override full background (not just backgroundColor) so gradient doesn't mask theme change
                 switch(color) {
                     case 'red':
-                        document.getElementById('formbox').style.backgroundColor = 'rgb(255, 235, 238)';
+                        formBox.style.background = 'linear-gradient(135deg,#ffe5e7,#ffcfd2)';
                         break;
                     case 'blue':
-                        document.getElementById('formbox').style.backgroundColor = 'rgb(227, 242, 253)';
+                        formBox.style.background = 'linear-gradient(135deg,#e3f2fd,#bbdefb)';
                         break;
                     case 'green':
-                        document.getElementById('formbox').style.backgroundColor = 'rgb(232, 245, 233)';
+                        formBox.style.background = 'linear-gradient(135deg,#e8f5e9,#c8e6c9)';
                         break;
                     case 'gold':
-                        document.getElementById('formbox').style.backgroundColor = 'rgb(255, 249, 231)';
+                        formBox.style.background = 'linear-gradient(135deg,#fff9e7,#ffecb3)';
                         break;
                     default:
-                        color = 'rgb(253, 245, 236)';
+                        formBox.style.background = 'linear-gradient(135deg, rgba(255,250,244,0.95), rgba(253,245,236,0.95))';
                 }
 
 
@@ -360,8 +364,8 @@
                             themeOptions.forEach(opt => { opt.style.border = 'none'; });
                         }
 
-                        // revert background color to the original gold tone
-                        document.getElementById('formbox').style.backgroundColor = 'rgb(253, 245, 236)';
+                        // revert full background to original gradient so override is complete
+                        document.getElementById('formbox').style.background = 'linear-gradient(135deg, rgba(255,250,244,0.95), rgba(253,245,236,0.95))';
                     }
                 }
 
