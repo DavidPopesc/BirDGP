@@ -6,62 +6,90 @@
     <title>Fellowship Event Hall</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="sourcefiles/logo.ico">
+    <style>
+        /* Always-visible floating total price badge */
+        #price {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            color: #205a25;
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 18px;
+            margin: 0 !important;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            #price {
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+                width: calc(100% - 32px);
+            }
+        }
+        /* Enhanced form styling additions */
+        #formbox {
+            background: linear-gradient(135deg, rgba(255,250,244,0.95), rgba(253,245,236,0.95));
+            border: 1px solid rgba(0,0,0,0.06);
+            backdrop-filter: blur(4px);
+            transition: background-color 240ms ease;
+        }
+        #reserve-form label { font-weight:600; color:#333; }
+        #reserve-form input[type="text"],
+        #reserve-form input[type="tel"],
+        #reserve-form input[type="date"] { width:100%; transition:border-color 160ms ease, box-shadow 160ms ease; }
+        #reserve-form input:focus { outline:none; border-color:#4CAF50 !important; box-shadow:0 0 0 4px rgba(76,175,80,0.25); }
+        .option-grid { display:flex; flex-wrap:wrap; gap:16px; }
+        .option-card { position:relative; border-radius:12px; overflow:hidden; cursor:pointer; transition:transform 160ms ease, box-shadow 160ms ease, border 160ms ease; border:2px solid transparent; background:#fff; text-align:center; }
+        .option-card:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(0,0,0,0.15); }
+        .option-card.selected { border-color:#4CAF50; box-shadow:0 6px 18px rgba(76,175,80,0.35); }
+        .option-card img { display:block; width:150px; height:100px; object-fit:cover; }
+        .option-card p { margin:8px 0 8px; font-weight:600; font-size:14px; }
+        @media (max-width:640px){ .option-card img{ width:130px; height:86px; } }
+        .required-note { font-size:12px; color:#b30000; margin:-4px 0 12px; }
+        .error-ring { animation:errorPulse 600ms ease; }
+        @keyframes errorPulse { 0%{ box-shadow:0 0 0 0 rgba(244,67,54,0.6);} 70%{ box-shadow:0 0 0 6px rgba(244,67,54,0);} 100%{ box-shadow:0 0 0 0 rgba(244,67,54,0);} }
+    </style>
 </head>
 
 <body>
 
     <div id="navbar"></div>
     <div id="main-content" style="position: relative; padding: 20px; font-family: Arial, sans-serif;">
-        <div id="formbox" style="max-width: 850px; margin: 0 auto; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: rgb(253, 245, 236);">
+    <div id="formbox" style="max-width: 600px; margin: 0 auto; padding: 20px 20px 80px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: rgb(253, 245, 236); position:relative;">
             <form id="reserve-form">
                 <h1 style="text-align: center;">Reserve Venue</h1>
 
-                <label for="name" style="display: block; margin-bottom: 8px;">Your Name</label>
-                <input type="text" id="name" name="name" style="width: 100%; padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 4px;">
+                <label for="name" style="display: block; margin-bottom: 8px;">Your Name *</label>
+                <input type="text" id="name" name="name" required aria-required="true" placeholder="John Doe" style="padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 8px;">
 
-                <label for="phone" style="display: block; margin-bottom: 8px;">Phone Number</label>
-                <input type="tel" id="phone" name="phone" pattern="[0-9]+" title="Please enter only numbers." style="width: 100%; padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 4px;">
+                <label for="phone" style="display: block; margin-bottom: 8px;">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" required aria-required="true" pattern="[0-9]{7,15}" title="Enter digits only (7-15)." placeholder="5551234567" style="padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 8px;">
 
-                <label for="start-date" style="display: block; margin-bottom: 8px;">Start Date</label>
-                <input type="date" id="start-date" name="start-date" style="width: 100%; padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 4px;" min="2025-11-02">
 
-                <label for="end-date" style="display: block; margin-bottom: 8px;">End Date</label>
-                <input type="date" id="end-date" name="end-date" style="width: 100%; padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 4px;">
+                <label for="date" style="display: block; margin-bottom: 8px;">Date *</label>
+                <input type="date" id="date" name="date" required aria-required="true" style="padding: 8px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 8px;">
+                <div class="required-note">* Required fields</div>
+                <input type="hidden" id="event-type-hidden" name="event-type" />
 
-                <label for="event-type" style="display: block; margin-bottom: 8px;">Event Type</label>
-                <div id="event-type-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
-                    <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'party')">
-                        <img src="sourcefiles/party.jpg" alt="Party" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
-                        <p style="margin-top: 8px;">Party</p>
-                    </div>
-                    <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'company-meeting')">
-                        <img src="sourcefiles/company-meeting.jpg" alt="Company Meeting" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
-                        <p style="margin-top: 8px;">Company Meeting</p>
-                    </div>
-                    <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'company-get-together')">
-                        <img src="sourcefiles/company-get-together.jpg" alt="Company Get Together" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
-                        <p style="margin-top: 8px; ">Company Get Together</p>
-                    </div>
-                    <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'quinceanera')">
-                        <img src="sourcefiles/quinceanera.jpg" alt="Quinceañera" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
-                        <p style="margin-top: 8px;">Quinceañera</p>
-                    </div>
-                    <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'wedding')">
-                        <img src="sourcefiles/wedding.jpg" alt="Wedding" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
-                        <p style="margin-top: 8px;">Wedding</p>
-                    </div>
-                    <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'birthday')">
-                        <img src="sourcefiles/birthday.jpg" alt="Birthday" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
-                        <p style="margin-top: 8px;">Birthday</p>
-                    </div>
-                    <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'conference')">
-                        <img src="sourcefiles/conference.jpg" alt="Conference" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
-                        <p style="margin-top: 8px;">Conference</p>
-                    </div>
-                    <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'other')">
-                        <img src="sourcefiles/other.jpg" alt="Other" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
-                        <p style="margin-top: 8px;">Other</p>
-                    </div>
+                <label for="event-type" style="display: block; margin-bottom: 8px;">Event Type *</label>
+                <div id="event-type-options" class="option-grid" style="margin-bottom: 16px;">
+                    <div class="option-card" onclick="selectEventType(this, 'party')"><img src="sourcefiles/party.jpg" alt="Party"><p>Party</p></div>
+                    <div class="option-card" onclick="selectEventType(this, 'company-meeting')"><img src="sourcefiles/company-meeting.jpg" alt="Company Meeting"><p>Company Meeting</p></div>
+                    <div class="option-card" onclick="selectEventType(this, 'company-get-together')"><img src="sourcefiles/company-get-together.jpg" alt="Company Get Together"><p>Company Get Together</p></div>
+                    <div class="option-card" onclick="selectEventType(this, 'quinceanera')"><img src="sourcefiles/quinceanera.jpg" alt="Quinceañera"><p>Quinceañera</p></div>
+                    <div class="option-card" onclick="selectEventType(this, 'wedding')"><img src="sourcefiles/wedding.jpg" alt="Wedding"><p>Wedding</p></div>
+                    <div class="option-card" onclick="selectEventType(this, 'birthday')"><img src="sourcefiles/birthday.jpg" alt="Birthday"><p>Birthday</p></div>
+                    <div class="option-card" onclick="selectEventType(this, 'conference')"><img src="sourcefiles/conference.jpg" alt="Conference"><p>Conference</p></div>
+                    <div class="option-card" onclick="selectEventType(this, 'other')"><img src="sourcefiles/other.jpg" alt="Other"><p>Other</p></div>
                 </div>
 
                 <label for="catering" style="display: block; margin-bottom: 8px;">Catering Options</label>
@@ -142,7 +170,7 @@
                     </div>
                 </div>
 
-                <h3 id="price" style="text-align: center; margin-top: 16px;">Total Price: $0</h3>
+                <!-- Price badge moved outside form for consistent fixed positioning; placeholder inside form removed -->
 
                 <button type="submit" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">Reserve</button>
                 <button type="reset" style="width: 100%; padding: 10px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px;">Reset</button>
@@ -151,20 +179,48 @@
 
         <script>
             const form = document.getElementById('reserve-form');
-            const priceElement = document.getElementById('price');
+            // Prefill and persist user's name from/to localStorage
+            (function(){
+                const nameInput = document.getElementById('name');
+                if (nameInput) {
+                    try {
+                        const storedName = localStorage.getItem('userName');
+                        if (storedName) nameInput.value = storedName;
+                        nameInput.addEventListener('input', ()=>{
+                            const v = nameInput.value.trim();
+                            if (v) localStorage.setItem('userName', v);
+                        });
+                    } catch(_) {}
+                }
+            })();
+            // create or reference floating price badge outside form to avoid layout interference
+            let priceElement = document.getElementById('price');
+            if (!priceElement) {
+                priceElement = document.createElement('div');
+                priceElement.id = 'price';
+                priceElement.textContent = 'Total Price: $0';
+                document.body.appendChild(priceElement);
+            }
+            // Enforce date at least 5 days in the future
+            const dateInput = document.getElementById('date');
+            const minDateObj = new Date();
+            minDateObj.setDate(minDateObj.getDate() + 5);
+            const minDateIso = minDateObj.toISOString().split('T')[0];
+            dateInput.min = minDateIso;
             const selectedOptions = new Set();
             const mainContent = document.getElementById('main-content');
             let currentEventType = null; // track selected event type
 
             const eventTypePrices = {
-                party: 500,
-                'company-meeting': 300,
-                'company-get-together': 400,
-                quinceanera: 700,
-                wedding: 1000,
-                birthday: 350,
-                conference: 600,
-                other: 1100
+                // Synced with pricing.html (Venue Packages)
+                party: 650,
+                'company-meeting': 500,
+                'company-get-together': 550,
+                quinceanera: 1200,
+                wedding: 2200,
+                birthday: 450,
+                conference: 1000,
+                other: 1500
             };
 
             function toggleSelection(element, value) {
@@ -195,16 +251,30 @@
                 }
 
                 selectedOptions.forEach(option => {
-                    if (option === 'italian') price += 300;
-                    if (option === 'bbq') price += 250;
-                    if (option === 'vegan') price += 350;
-                    if (option === 'desserts') price += 150;
-                    if (option === 'decorations') price += 150;
-                    if (option === 'lighting') price += 200;
-                    if (option === 'sound') price += 250;
-                    if (option === 'basic-photography') price += 300;
-                    if (option === 'premium-photography') price += 600;
+                    // Catering (per 50 guests baseline)
+                    if (option === 'italian') price += 1250;
+                    if (option === 'bbq') price += 1050;
+                    if (option === 'vegan') price += 1350;
+                    if (option === 'desserts') price += 550;
+
+                    // Decorations
+                    if (option === 'basic-decorations') price += 250;
+                    if (option === 'enhanced-decorations') price += 600; // includes theme colors
+
+                    // Extras
+                    if (option === 'lighting') price += 300;
+                    if (option === 'sound') price += 350;
+
+                    // Photography
+                    if (option === 'basic-photography') price += 500;
+                    if (option === 'premium-photography') price += 1100;
                 });
+
+                // Theme Color add-on applies only to Standard (basic) decorations
+                const hasThemeColor = Array.from(selectedOptions).some(o => typeof o === 'string' && o.startsWith('theme-color:'));
+                if (hasThemeColor && selectedOptions.has('basic-decorations') && !selectedOptions.has('enhanced-decorations')) {
+                    price += 100;
+                }
 
                 priceElement.textContent = `Total Price: $${price}`;
             }
@@ -277,18 +347,35 @@
                     
                 } else {
                     document.getElementById('theme-colors').style.display = 'none';
+                    // When Standard decorations are selected, revert formbox theme to default gold
+                    if (value === 'basic-decorations') {
+                        // clear any previously selected theme-color from state and UI
+                        Array.from(selectedOptions)
+                            .filter(o => typeof o === 'string' && o.startsWith('theme-color:'))
+                            .forEach(o => selectedOptions.delete(o));
+
+                        const themeColorsEl = document.getElementById('theme-colors');
+                        if (themeColorsEl) {
+                            const themeOptions = themeColorsEl.querySelectorAll('div[onclick]');
+                            themeOptions.forEach(opt => { opt.style.border = 'none'; });
+                        }
+
+                        // revert background color to the original gold tone
+                        document.getElementById('formbox').style.backgroundColor = 'rgb(253, 245, 236)';
+                    }
                 }
 
                 calculatePrice();
             }
 
             function selectEventType(element, type) {
-                const options = document.querySelectorAll('#event-type-options div');
-                options.forEach(option => option.style.border = 'none');
-                element.style.border = '2px solid #4CAF50';
+                const options = document.querySelectorAll('#event-type-options .option-card');
+                options.forEach(option => option.classList.remove('selected'));
+                element.classList.add('selected');
 
                 // set current event type
                 currentEventType = type;
+                document.getElementById('event-type-hidden').value = type;
 
                 // update background with a 10% black tint overlay
                 const imagePath = `sourcefiles/${type}.jpg`;
@@ -305,19 +392,41 @@
 
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
-
-                const reservationData = {
-                    name: document.getElementById('name').value,
-                    phone: document.getElementById('phone').value,
-                    eventType: Array.from(document.querySelectorAll('#event-type-options div')).find(option => option.style.border.includes('solid'))?.textContent.trim() || 'N/A',
-                    startDate: document.getElementById('start-date').value,
-                    endDate: document.getElementById('end-date').value,
-                    options: Array.from(selectedOptions),
-                    price: priceElement.textContent.replace('Total Price: $', '')
-                };
-
-                localStorage.setItem('reservationData', JSON.stringify(reservationData));
-                window.location.href = 'receipt.html';
+                try {
+                    const requiredIds = ['name','phone','date'];
+                    let invalid = false;
+                    requiredIds.forEach(id => {
+                        const el = document.getElementById(id);
+                        if (!el.value.trim()) { el.classList.add('error-ring'); invalid = true; setTimeout(()=>el.classList.remove('error-ring'),800); }
+                    });
+                    if (!document.getElementById('event-type-hidden').value) {
+                        alert('Please select an event type.');
+                        invalid = true;
+                    }
+                    // Validate date is >= min (5 days ahead)
+                    const chosenDate = document.getElementById('date').value;
+                    if (chosenDate && chosenDate < minDateIso) {
+                        alert(`Date must be at least ${minDateIso} or later (5 days from today).`);
+                        const el = document.getElementById('date');
+                        el.classList.add('error-ring');
+                        setTimeout(()=>el.classList.remove('error-ring'),800);
+                        invalid = true;
+                    }
+                    if (invalid) return;
+                    const reservationData = {
+                        name: document.getElementById('name').value.trim(),
+                        phone: document.getElementById('phone').value.trim(),
+                        eventType: document.getElementById('event-type-hidden').value,
+                        date: document.getElementById('date').value,
+                        options: Array.from(selectedOptions),
+                        price: priceElement.textContent.replace('Total Price: $', '')
+                    };
+                    localStorage.setItem('reservationData', JSON.stringify(reservationData));
+                    window.location.href = 'receipt.html';
+                } catch (e) {
+                    console.error('Submission error', e);
+                    alert('Unexpected error. Please try again.');
+                }
             });
 
             form.addEventListener('reset', function() {
@@ -346,6 +455,10 @@
 
                 // Hide theme colors section
                 document.getElementById('theme-colors').style.display = 'none';
+
+                // Restore default form background color
+                document.getElementById('formbox').style.backgroundColor = 'rgb(253, 245, 236)';
+                document.getElementById('event-type-hidden').value = '';
             });
         </script>
     </div>

@@ -1,48 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reservation Receipt</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="sourcefiles/logo.ico" />
+
+    <style>
+        :root {
+            --bg: #fff9f2;
+            --panel: #fffefb;
+            --accent: #4CAF50;
+            --accent-600: #43a047;
+            --text: #2f2f2f;
+            --muted: #6b6b6b;
+            --ring: rgba(76, 175, 80, 0.35);
+            --table-border: #e9e9e9;
+            --row-alt: #fafafa;
+        }
+
+        body {
+            background:
+                radial-gradient(1200px 500px at 80% -50%, rgba(76,175,80,0.08), transparent 40%),
+                radial-gradient(800px 400px at -10% 110%, rgba(255,193,7,0.08), transparent 40%),
+                var(--bg);
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .page { max-width: 980px; margin: 56px auto; padding: 0 16px 56px; }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            padding: 24px;
+            animation: fadeUp 420ms ease both;
+        }
+
+        h1 { text-align: center; color: var(--text); margin: 0; font-family: 'Lobster', cursive; font-size: 40px; }
+        .h1-underline { width: 72px; height: 4px; margin: 10px auto 26px; background: linear-gradient(90deg, var(--accent), var(--accent-600)); border-radius: 999px; }
+
+        .kv {
+            display: grid; grid-template-columns: 160px 1fr; gap: 10px 16px; margin-top: 8px; color: var(--text);
+        }
+        .kv .label { font-weight: 700; color: var(--muted); }
+
+        .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--table-border); margin-top: 18px; }
+        table { width: 100%; border-collapse: collapse; min-width: 560px; background: white; }
+        thead th { text-align: left; font-weight: 700; font-size: 14px; background: #f6fff7; color: #245a2a; border-bottom: 1px solid var(--table-border); padding: 14px 16px; }
+        tbody td { padding: 12px 16px; border-bottom: 1px solid var(--table-border); font-size: 15px; color: var(--text); }
+        tbody tr:nth-child(even) { background: var(--row-alt); }
+        .price { white-space: nowrap; text-align: right; font-weight: 700; color: #205a25; }
+        .muted { color: var(--muted); }
+
+        .totals {
+            display: flex; justify-content: flex-end; margin-top: 12px; align-items: center; gap: 12px;
+        }
+        .totals .label { font-weight: 800; color: var(--text); }
+        .totals .amount {
+            background: linear-gradient(180deg, var(--accent), var(--accent-600));
+            color: #fff; padding: 8px 16px; border-radius: 999px; font-weight: 800; min-width: 140px; text-align: center; box-shadow: 0 6px 20px rgba(76, 175, 80, 0.35);
+        }
+
+        .actions { display: flex; gap: 12px; justify-content: center; margin-top: 18px; }
+        .btn {
+            padding: 12px 18px; background: linear-gradient(180deg, var(--accent), var(--accent-600)); color: white; border: none; border-radius: 999px; cursor: pointer; font-size: 16px; font-weight: 700; box-shadow: 0 6px 20px rgba(76, 175, 80, 0.35);
+        }
+        .btn:hover { filter: brightness(1.05); }
+
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(8px);} to { opacity: 1; transform: translateY(0);} }
+    </style>
 </head>
 <body>
     <div id="navbar"></div>
-    <div style="max-width: 800px; margin: 50px auto; padding: 20px; background: #f9f9f9; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-        <h1 style="text-align: center;">Reservation Receipt</h1>
-        <div id="receipt-content" style="font-family: Arial, sans-serif;">
-            <p><strong>Name:</strong> <span id="receipt-name"></span></p>
-            <p><strong>Phone:</strong> <span id="receipt-phone"></span></p>
-            <p><strong>Event Type:</strong> <span id="receipt-event-type"></span></p>
-            <p><strong>Start Date:</strong> <span id="receipt-start-date"></span></p>
-            <p><strong>End Date:</strong> <span id="receipt-end-date"></span></p>
-            <p><strong>Selected Options:</strong></p>
-            <ul id="receipt-options"></ul>
-            <p><strong>Total Price:</strong> <span id="receipt-price"></span></p>
-        </div>
-        <button onclick="window.location.href='reserve.html'" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 20px;">Back to Reservation</button>
-    </div>
-    <script>
-        fetch('sourcefiles/navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar').innerHTML = data;
-            });
 
+    <div class="page">
+        <div id="receipt-card" class="card">
+            <h1>Reservation Receipt</h1>
+            <div class="h1-underline" aria-hidden="true"></div>
+
+            <div class="kv">
+                <div class="label">Name</div><div id="receipt-name"></div>
+                <div class="label">Phone</div><div id="receipt-phone"></div>
+                <div class="label">Event Type</div><div id="receipt-event-type"></div>
+                <div class="label">Date</div><div id="receipt-date"></div>
+            </div>
+
+            <div class="table-wrap">
+                <table aria-label="Receipt line items">
+                    <thead>
+                        <tr>
+                            <th style="width:65%;">Item</th>
+                            <th class="price" style="width:35%;">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="charges-body"></tbody>
+                </table>
+            </div>
+
+            <div class="totals">
+                <div class="label">Total</div>
+                <div id="receipt-price" class="amount">$0</div>
+            </div>
+
+            <div class="actions">
+                <button class="btn" onclick="window.print()">Print Receipt</button>
+                <button class="btn" onclick="window.location.href='reserve.html'">Back to Reservation</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script>
+        // Load Navbar / Footer
+        fetch('sourcefiles/navbar.html')
+            .then(r => r.text())
+            .then(html => document.getElementById('navbar').innerHTML = html);
+        fetch('sourcefiles/footer.html')
+            .then(r => r.text())
+            .then(html => document.getElementById('footer').innerHTML = html);
+
+        // Read reservation data
         const receiptData = JSON.parse(localStorage.getItem('reservationData')) || {};
+
+        // Populate core fields
         document.getElementById('receipt-name').textContent = receiptData.name || 'N/A';
         document.getElementById('receipt-phone').textContent = receiptData.phone || 'N/A';
-        document.getElementById('receipt-event-type').textContent = receiptData.eventType || 'N/A';
-        document.getElementById('receipt-start-date').textContent = receiptData.startDate || 'N/A';
-        document.getElementById('receipt-end-date').textContent = receiptData.endDate || 'N/A';
-        document.getElementById('receipt-price').textContent = `$${receiptData.price || 0}`;
+        const eventTypeDisplay = receiptData.eventType || 'N/A';
+        document.getElementById('receipt-event-type').textContent = eventTypeDisplay;
+        document.getElementById('receipt-date').textContent = receiptData.date || 'N/A';
 
-        const optionsList = document.getElementById('receipt-options');
-        (receiptData.options || []).forEach(option => {
-            const li = document.createElement('li');
-            li.textContent = option;
-            optionsList.appendChild(li);
+        // Pricing maps (synced with pricing.html)
+        const eventTypePrices = {
+            'Party': 650,
+            'Company Meeting': 500,
+            'Company Get Together': 550,
+            'Quinceañera': 1200,
+            'Wedding': 2200,
+            'Birthday': 450,
+            'Conference': 1000,
+            'Other': 1500,
+        };
+
+        const optionMap = {
+            'italian': { label: 'Italian Cuisine (per 50 guests)', price: 1250 },
+            'bbq': { label: 'BBQ (per 50 guests)', price: 1050 },
+            'vegan': { label: 'Vegan Options (per 50 guests)', price: 1350 },
+            'desserts': { label: 'Desserts (per 50 guests)', price: 550 },
+            'basic-decorations': { label: 'Standard Decorations', price: 250 },
+            'enhanced-decorations': { label: 'Enhanced Decorations', price: 600 },
+            'lighting': { label: 'Lighting', price: 300 },
+            'sound': { label: 'Sound System', price: 350 },
+            'basic-photography': { label: 'Event Photography (Basic)', price: 500 },
+            'premium-photography': { label: 'Event Photography (Premium)', price: 1100 },
+        };
+
+        // Build line items
+        const tbody = document.getElementById('charges-body');
+        const opts = Array.isArray(receiptData.options) ? receiptData.options : [];
+
+        function addRow(label, amount) {
+            const tr = document.createElement('tr');
+            const tdL = document.createElement('td');
+            const tdR = document.createElement('td');
+            tdL.textContent = label;
+            tdR.textContent = `$${amount}`;
+            tdR.className = 'price';
+            tr.appendChild(tdL); tr.appendChild(tdR);
+            tbody.appendChild(tr);
+        }
+
+        // Base event price
+        if (eventTypePrices[eventTypeDisplay]) {
+            addRow(`${eventTypeDisplay} (Base)`, eventTypePrices[eventTypeDisplay]);
+        }
+
+        // Options
+        opts.forEach(o => {
+            if (typeof o === 'string' && o.startsWith('theme-color:')) return; // handle later
+            if (optionMap[o]) {
+                addRow(optionMap[o].label, optionMap[o].price);
+            }
         });
+
+        // Theme color add-on (only if Standard decorations selected and Enhanced not selected)
+        const hasTheme = opts.some(o => typeof o === 'string' && o.startsWith('theme-color:'));
+        const hasBasicDecor = opts.includes('basic-decorations');
+        const hasEnhancedDecor = opts.includes('enhanced-decorations');
+        if (hasTheme && hasBasicDecor && !hasEnhancedDecor) {
+            // extract color for display
+            const color = (opts.find(o => o.startsWith('theme-color:')) || '').split(':')[1] || '';
+            const colorCap = color ? (color.charAt(0).toUpperCase() + color.slice(1)) : '';
+            addRow(`Theme Color Add-on (Standard)${colorCap ? ` - ${colorCap}` : ''}`, 100);
+        }
+
+        // Set total to saved price for fidelity
+        const savedTotal = Number(receiptData.price || 0);
+        document.getElementById('receipt-price').textContent = `$${savedTotal}`;
+
+        // Carry over theme to receipt card background
+        const card = document.getElementById('receipt-card');
+        const themeEntry = opts.find(o => typeof o === 'string' && o.startsWith('theme-color:'));
+        if (themeEntry) {
+            const theme = themeEntry.split(':')[1];
+            const themeMap = {
+                red: 'rgb(255, 235, 238)',
+                blue: 'rgb(227, 242, 253)',
+                green: 'rgb(232, 245, 233)',
+                gold: 'rgb(255, 249, 231)'
+            };
+            if (themeMap[theme]) {
+                card.style.backgroundColor = themeMap[theme];
+            }
+        } else if (hasBasicDecor && !hasEnhancedDecor) {
+            // Default gold for Standard decorations without an explicit theme selection
+            card.style.backgroundColor = 'rgb(253, 245, 236)';
+        }
     </script>
 </body>
 </html>

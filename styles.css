@@ -1,3 +1,13 @@
+h1 {
+    text-align: center;
+    color: var(--text);
+    margin: 0 0 10px 0;
+    font-family: 'Lobster', cursive;
+    font-size: 42px;
+    font-weight: 700px;
+}
+
+
 /* Sliding pics? */
 .event-container {
     position: relative;

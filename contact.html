@@ -1,204 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fellowship Event Hall</title>
-
-  <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet" />
-
   <style>
-    /* ===== Cloudy Blue Theme ===== */
-    :root {
-      --sky-0:#f0f6ff; --sky-1:#e6f0ff; --sky-2:#dbeafe;
-      --ink:#0f172a; --ink-2:#334155; --head:#0b3b77;
-      --ring:#93c5fd; --shadow:0 10px 28px rgba(15,30,60,.12);
-      --radius:16px; --accent-start:#4f8df6; --accent-end:#7db8ff;
-    }
-
-    body {
-      color:var(--ink);
-      font-family:"Segoe UI", Roboto, Arial, sans-serif;
-      line-height:1.65;
-      background:
-        radial-gradient(1200px 600px at 80% -10%, #fff8f1 0%, transparent 60%),
-        radial-gradient(900px 500px at -10% 10%, #eaf2ff 0%, transparent 60%),
-        linear-gradient(180deg, var(--sky-0) 0%, var(--sky-1) 40%, var(--sky-2) 100%);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
-
-    a { color:#2563eb; text-decoration:none; transition:color .2s ease, filter .2s ease; }
-    a:hover { color:#1d4ed8; filter:brightness(1.03); }
-
-    /* ===== HERO SECTION ===== */
-    .hero {
-      position:relative;
-      display:flex; align-items:center; justify-content:center;
-      min-height:48vh;
-      border-radius:0 0 var(--radius) var(--radius);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      text-align:center;
-      background:linear-gradient(180deg, var(--sky-0) 0%, var(--sky-1) 40%, var(--sky-2) 100%);
-    }
-
-    /* Subtle drifting clouds */
-    .hero::before, .hero::after {
-      content:""; position:absolute; inset:-20% -10%;
-      background:
-        radial-gradient(60% 40% at 20% 30%, rgba(255,255,255,.65) 0%, transparent 60%),
-        radial-gradient(50% 35% at 70% 60%, rgba(255,255,255,.55) 0%, transparent 60%),
-        radial-gradient(45% 30% at 30% 80%, rgba(255,255,255,.45) 0%, transparent 60%);
-      animation: floatClouds 45s linear infinite;
-      pointer-events:none;
-    }
-    .hero::after { animation-duration:60s; opacity:.6; filter:blur(2px); }
-
-    @keyframes floatClouds {
-      0% { transform:translate3d(0,0,0) scale(1); }
-      50% { transform:translate3d(2%, -1%, 0) scale(1.02); }
-      100% { transform:translate3d(0,0,0) scale(1); }
-    }
-
-    /* Image layers for crossfade */
-    .hero-img {
-      position:absolute; inset:0;
-      background-size:cover; background-position:center;
-      opacity:0; will-change:opacity;
-      transition:opacity 2s ease-in-out;
-    }
-    .hero-img.active { opacity:1; }
-
-    .hero-gradient {
-      position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.45) 0%, rgba(240,249,255,0));
-      mix-blend-mode: soft-light; pointer-events:none;
-    }
-
-    /* ===== CONTENT SECTIONS ===== */
-    .wrap { padding:0 5% 5% 5%; }
-    .card {
-      max-width:980px; margin:2rem auto; padding:1.5rem;
-      background:rgba(255,255,255,.86); backdrop-filter:blur(5px);
-      border:1px solid rgba(147,197,253,.25);
-      border-radius:var(--radius); box-shadow:var(--shadow);
-    }
-    .card h2 { margin-top:0; color:var(--head); }
-
-    /* ===== PANEL (Bottom Section) ===== */
-    .panel {
-      position:relative;
-      border-radius:var(--radius); overflow:hidden;
-      min-height:28vh;
-      display:flex; flex-direction:column; justify-content:center;
-      padding:6% 8%;
-      box-shadow:var(--shadow);
-      background:
-        linear-gradient(180deg, var(--sky-0) 0%, var(--sky-1) 40%, var(--sky-2) 100%),
-        url('sourcefiles/fellowship2img.jpg') center/cover no-repeat;
-    }
-    .panel::after {
-      content:""; position:absolute; inset:0;
-      background:linear-gradient(180deg, rgba(255,255,255,.15), rgba(255,255,255,.1));
-      mix-blend-mode:soft-light; pointer-events:none;
-    }
-    .panel h2, .panel p {
-      position:relative; color:var(--head);
-      text-shadow:none;
-    }
-
     /* ===== SLIDE-IN / FADE-IN ===== */
-    .slide-in {
-      opacity:0;
-      transform:translateY(24px) scale(.985);
-      will-change:transform,opacity;
-      transition:opacity .6s ease-out, transform .6s cubic-bezier(.22,.61,.36,1);
-    }
-    .slide-in.visible {
-      opacity:1;
-      transform:translateY(0) scale(1);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .hero::before, .hero::after, .hero-img { animation:none; transition:none; }
-    }
 
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      background-color: #f3f4f6;
     }
 
     .container {
-      max-width: 800px;
-      margin: 50px auto;
-      background: #ffffff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      margin: 56px auto;
+      background: var(--panel);
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0,0,0,0.05);
+      animation: fadeUp 420ms ease both;
     }
 
-    h1 {
-      text-align: center;
-      color: #333333;
-      margin-bottom: 20px;
+
+    .h1-underline {
+      width: 72px;
+      height: 4px;
+      margin: 8px auto 24px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-600));
+      border-radius: 999px;
     }
 
     form {
-      display: flex;
-      flex-direction: column;
+      display: grid;
       gap: 16px;
     }
 
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+
     label {
-      font-weight: bold;
-      color: #555555;
+      font-weight: 600;
+      color: var(--muted);
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
     }
 
     input, textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #cccccc;
-      border-radius: 4px;
+      width: 50%;
+      padding: 12px 14px;
+      border: 1px solid #e6e6e6;
+      border-radius: 10px;
       font-size: 16px;
+      color: var(--text);
+      background: #fff;
+      transition: box-shadow 160ms ease, border-color 160ms ease, transform 80ms ease;
+      margin-left: auto;  /* center horizontally */
+      margin-right: auto; /* center horizontally */
+      display: block;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 6px var(--ring);
+    }
+
+    textarea { resize: vertical; min-height: 140px; }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 6px;
     }
 
     button {
-      padding: 10px;
-      background-color: #4CAF50;
+      padding: 12px 18px;
+      background: linear-gradient(180deg, var(--accent), var(--accent-600));
       color: white;
       border: none;
-      border-radius: 4px;
+      border-radius: 999px;
       cursor: pointer;
       font-size: 16px;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(76, 175, 80, 0.35);
+      transition: transform 120ms ease, box-shadow 160ms ease, opacity 120ms ease;
+      min-width: 180px;
     }
-
-    button:hover {
-      background-color: #45a049;
-    }
+  .contact-buttons { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:24px; }
 
     .contact-info {
-      margin-top: 20px;
+      margin-top: 22px;
       text-align: center;
-      color: #555555;
+      color: var(--muted);
     }
 
-    .contact-info p {
-      margin: 5px 0;
-    }
+    .contact-info p { margin: 6px 0; }
 
-    .contact-info a {
-      color: #4CAF50;
-      text-decoration: none;
-    }
 
-    .contact-info a:hover {
-      text-decoration: underline;
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
   </style>
+  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fellowship Event Hall</title>
@@ -210,20 +122,34 @@
   <div id="navbar"></div>
     <div class="container">
         <h1>Contact Us</h1>
-        <form>
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        <div class="h1-underline" aria-hidden="true"></div>
+        <form id="contact-form" novalidate style="text-align: center;">
+            <div class="field">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
 
-            <label for="email">Your Email</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <div class="field">
+              <label for="email">Your Email</label>
+              <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
 
+          <div class="field">
             <label for="message">Your Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Write your message here" required></textarea>
+            <textarea id="message" name="message" rows="6" placeholder="Write your message here" required></textarea>
+          </div>
 
-            <button type="submit">Send Message</button>
+          <div class="actions">
+            <button type="submit" style="padding:12px 18px; background:linear-gradient(180deg, var(--accent), var(--accent-600)); background-color: rgb(255, 218, 170); color:#030303; border:none; border-radius:999px; cursor:pointer; font-size:16px; font-weight:600; box-shadow:0 6px 20px rgba(76,175,80,0.35); min-width:180px; transition:transform 120ms ease, box-shadow 160ms ease, opacity 120ms ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 10px 26px rgba(76,175,80,0.45)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(76,175,80,0.35)';">Send Message</button>
+          </div>
         </form>
         <div class="contact-info">
-            <p>Phone: <a href="tel:+123456789">+1 234 567 89</a></p>
+          <div class="contact-buttons">
+            <a href="tel:+1-000-000-0000" class="btn" aria-label="Call us">Call</a>
+            <a href="mailto:info@fellowshiphall.com" class="btn" aria-label="Email us">Email</a>
+            <a href="reserve.html" class="btn" aria-label="Reserve venue">Reserve</a>
+          </div>
+
             <p>Email: <a href="mailto:info@fellowshiphall.com">info@fellowshiphall.com</a></p>
             <p>Address: 123 Fellowship Street, Event City, EC 12345</p>
         </div>
@@ -240,7 +166,54 @@
       .then(r=>r.text())
       .then(html=>document.getElementById('footer').innerHTML = html);
 
+    // Handle form submit: clear entries and alert user, wrapped in try/catch
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        const form = document.getElementById('contact-form');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const messageInput = document.getElementById('message');
 
-      </script>
+        // Prefill name from localStorage if available and persist on change
+        try {
+          const storedName = localStorage.getItem('userName');
+          if (storedName) nameInput.value = storedName;
+          nameInput.addEventListener('input', () => {
+            const v = nameInput.value.trim();
+            if (v) localStorage.setItem('userName', v);
+          });
+        } catch (_) { /* ignore storage errors */ }
+
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          try {
+            // basic front-end validation before proceeding
+            if (!nameInput.value.trim() || !emailInput.value.trim() || !messageInput.value.trim()) {
+              // leverage built-in constraint UI if possible
+              form.reportValidity?.();
+              return;
+            }
+
+            const name = nameInput.value.trim();
+            // Persist name for personalization across the site
+            try { if (name) localStorage.setItem('userName', name); } catch(_) {}
+
+            // Clear the form
+            form.reset();
+
+            // Provide feedback
+            alert(`Message sent ${name}!`);
+          } catch (err) {
+            console.error('Error handling form submission:', err);
+            alert('Sorry, there was an error sending your message. Please try again.');
+          }
+        });
+      } catch (err) {
+        console.error('Error initializing contact form script:', err);
+        alert('Sorry, something went wrong initializing the page.');
+      }
+    });
+
+  </script>
 </body>
 </html>

@@ -118,7 +118,7 @@
 
     <div class="wrap">
       <section class="card slide-in">
-        <p style="font-size:1.1rem;color:var(--ink-2);">
+        <p id="welcome-text" style="font-size:1.1rem;color:var(--ink-2);">
           Welcome to Fellowship Event Hall — the place to host your unforgettable events. Whether you're planning a wedding,
           corporate gathering, birthday party, or any special occasion, our spacious and elegant venue is designed to accommodate your needs.
         </p>
@@ -218,6 +218,17 @@
         });
       }, { threshold:0.12, rootMargin:'0px 0px -10% 0px' });
       items.forEach(el => io.observe(el));
+    })();
+
+    // ===== Personalize welcome if name saved =====
+    (function(){
+      try {
+        const name = localStorage.getItem('userName');
+        if (!name) return;
+        const el = document.getElementById('welcome-text');
+        if (!el) return;
+        el.textContent = `Welcome to Fellowship Event Hall, ${name} — the place to host your unforgettable events. Whether you're planning a wedding, corporate gathering, birthday party, or any special occasion, our spacious and elegant venue is designed to accommodate your needs.`;
+      } catch(_) {}
     })();
   </script>
 </body>

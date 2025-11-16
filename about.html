@@ -14,12 +14,6 @@
 
   <style>
     /* ===== Cloudy Blue Theme (Unified with Home & Events) ===== */
-    :root {
-      --sky-0:#f0f6ff; --sky-1:#e6f0ff; --sky-2:#dbeafe;
-      --ink:#0f172a; --ink-2:#334155; --head:#0b3b77;
-      --ring:#93c5fd; --shadow:0 10px 28px rgba(15,30,60,.12);
-      --radius:16px; --accent-start:#4f8df6; --accent-end:#7db8ff;
-    }
 
 
     .lobster-text { font-family:'Lobster',cursive; color:var(--head); }
@@ -38,16 +32,6 @@
     }
     section h2 { text-align:center; margin:0 0 1rem; color:var(--head); }
 
-    /* ===== About Header ===== */
-    #about-header {
-      background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,.35));
-      text-align:center;
-      border:none;
-      box-shadow:none;
-      margin-top:2rem;
-    }
-    #about-header h1 { margin:.2rem 0 .3rem; }
-    #about-header p { color:var(--ink-2); margin:.2rem 0 0; }
 
     /* ===== Gallery ===== */
     .venue-images {
@@ -97,7 +81,7 @@
   <main>
     <section id="about-header" class="lobster-text">
       <h1>About Fellowship Event Hall</h1>
-      <p>Gentle light, open space, and a smooth experience for every event.</p>
+      <p id="about-sub">Gentle light, open space, and a smooth experience for every event.</p>
     </section>
 
     <section id="about-content" class="slide-in">
@@ -163,6 +147,20 @@
         });
       },{threshold:0.12,rootMargin:'0px 0px -10% 0px'});
       items.forEach(el=>io.observe(el));
+    })();
+
+    // Personal greeting if name saved
+    (function(){
+      try {
+        const name = localStorage.getItem('userName');
+        if (!name) return;
+        const header = document.getElementById('about-header');
+        const sub = document.getElementById('about-sub');
+        // Insert a personalized greeting line above the sub text
+        const greet = document.createElement('p');
+        greet.textContent = `Hi ${name}, at Fellowship Event Hall we’re excited to help make your event unforgettable.`;
+        header.insertBefore(greet, sub);
+      } catch(_) {}
     })();
   </script>
 
