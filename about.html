@@ -21,21 +21,6 @@
       --radius:16px; --accent-start:#4f8df6; --accent-end:#7db8ff;
     }
 
-    html,body { margin:0; padding:0; }
-    body {
-      color:var(--ink);
-      font-family:"Segoe UI", Roboto, Arial, sans-serif;
-      line-height:1.65;
-      background:
-        radial-gradient(1200px 600px at 80% -10%, #fff8f1 0%, transparent 60%),
-        radial-gradient(900px 500px at -10% 10%, #eaf2ff 0%, transparent 60%),
-        linear-gradient(180deg,var(--sky-0)0%,var(--sky-1)40%,var(--sky-2)100%);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
-
-    a { color:#2563eb; text-decoration:none; transition:color .2s ease,filter .2s ease; }
-    a:hover { color:#1d4ed8; filter:brightness(1.05); }
 
     .lobster-text { font-family:'Lobster',cursive; color:var(--head); }
     main { padding:0 1rem; }
@@ -103,31 +88,6 @@
       filter:saturate(1.05);
     }
     .btn:focus-visible { outline:2px solid var(--ring); outline-offset:3px; }
-
-    /* ===== Slide-in / Fade-in ===== */
-    .slide-in {
-      opacity:0;
-      transform:translateY(24px) scale(.985);
-      will-change:transform,opacity;
-      transition:opacity .6s ease-out,transform .6s cubic-bezier(.22,.61,.36,1);
-    }
-    .slide-in.visible {
-      opacity:1;
-      transform:translateY(0) scale(1);
-    }
-
-    /* ===== Footer Credit ===== */
-    .design-credit img {
-      max-height:40px;
-      opacity:.9;
-      transition:opacity .2s ease,transform .2s ease;
-      filter:drop-shadow(0 8px 16px rgba(15,30,60,.18));
-    }
-    .design-credit img:hover { opacity:1; transform:translateY(-2px); }
-
-    @media (prefers-reduced-motion:reduce) {
-      .slide-in.visible,.venue-images img,.btn { transition:none; }
-    }
   </style>
 </head>
 

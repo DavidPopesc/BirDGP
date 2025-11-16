@@ -14,34 +14,6 @@
 
   <style>
     /* ================= Cloudy Blue Theme ================= */
-    :root {
-      --sky-0:#f0f6ff;
-      --sky-1:#e6f0ff;
-      --sky-2:#dbeafe;
-      --ink:#0f172a;
-      --ink-2:#334155;
-      --head:#0b3b77;
-      --ring:#93c5fd;
-      --link:#2563eb;
-      --link-h:#1d4ed8;
-      --shadow:0 10px 28px rgba(15,30,60,.12);
-      --radius:16px;
-      --accent-start:#4f8df6;
-      --accent-end:#7db8ff;
-    }
-
-    body {
-      margin: 0;
-      color: var(--ink);
-      font-family: "Segoe UI", Roboto, Arial, sans-serif;
-      line-height: 1.65;
-      background:
-        radial-gradient(1200px 600px at 80% -10%, #fff8f1 0%, transparent 60%),
-        radial-gradient(900px 500px at -10% 10%, #eaf2ff 0%, transparent 60%),
-        linear-gradient(180deg, var(--sky-0) 0%, var(--sky-1) 40%, var(--sky-2) 100%);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
 
     a { color: var(--link); text-decoration: none; transition: color .2s ease, filter .2s ease; }
     a:hover { color: var(--link-h); filter: brightness(1.03); }
@@ -146,95 +118,8 @@ header::after {
       flex-wrap: wrap;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: .45rem;
-      padding: .7rem 1.1rem;
-      border-radius: 999px;
-      color: #fff;
-      background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
-      box-shadow: 0 10px 22px rgba(60,110,220,.25);
-      position: relative;
-      overflow: hidden;
-      transform: translateZ(0);
-      transition: transform .18s ease, box-shadow .18s ease, filter .2s ease;
-      font-weight: 500;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 30px rgba(60,110,220,.28);
-      filter: saturate(1.05);
-    }
-
-    .btn:active {
-      transform: translateY(0);
-      box-shadow: 0 8px 18px rgba(60,110,220,.22);
-    }
-
-    .btn:focus-visible {
-      outline: 2px solid var(--ring);
-      outline-offset: 3px;
-    }
-
-    .btn::after {
-      content: "";
-      position: absolute;
-      inset: -140% -30%;
-      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.35) 50%, transparent 100%);
-      transform: translateX(-60%) rotate(16deg);
-      transition: transform .8s ease;
-      pointer-events: none;
-    }
-
-    .btn:hover::after {
-      transform: translateX(120%) rotate(16deg);
-    }
-
-    .btn i { margin-right: .25rem; }
-
-    /* Footer */
-    footer {
-      background: rgba(15,30,60,.9);
-      color: #fff;
-      text-align: center;
-      padding: 1.5rem 1rem;
-      margin-top: 40px;
-      border-radius: var(--radius) var(--radius) 0 0;
-    }
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fellowhip</title>
-  <link rel="icon" type="image/x-icon" href="sourcefiles/logo.ico">
-
-</head>
-<body>
-
-
-
-</body>
-</html>
-
-
-<!--  -->
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fellowship Event Hall</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-
-<body>
-
-    @media (prefers-reduced-motion: reduce) {
-      .btn, .btn::after, .package { transition: none; }
-    }
   </style>
+  
 </head>
 
 <body>

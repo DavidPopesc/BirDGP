@@ -12,144 +12,149 @@
 
     <div id="navbar"></div>
     <div id="main-content" style="position: relative; padding: 20px; font-family: Arial, sans-serif;">
-        <h1 style="text-align: center;">Reserve Venue</h1>
-        <form id="reserve-form" style="max-width: 850px; margin: 0 auto; background: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-            <label for="name" style="display: block; margin-bottom: 8px;">Your Name</label>
-            <input type="text" id="name" name="name" style="width: 100%; padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 4px;">
+        <div id="formbox" style="max-width: 850px; margin: 0 auto; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: rgb(253, 245, 236);">
+            <form id="reserve-form">
+                <h1 style="text-align: center;">Reserve Venue</h1>
 
-            <label for="phone" style="display: block; margin-bottom: 8px;">Phone Number</label>
-            <input type="tel" id="phone" name="phone" pattern="[0-9]+" title="Please enter only numbers." style="width: 100%; padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 4px;">
+                <label for="name" style="display: block; margin-bottom: 8px;">Your Name</label>
+                <input type="text" id="name" name="name" style="width: 100%; padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 4px;">
 
-            <label for="start-date" style="display: block; margin-bottom: 8px;">Start Date</label>
-            <input type="date" id="start-date" name="start-date" style="width: 100%; padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 4px;" min="2025-11-02">
+                <label for="phone" style="display: block; margin-bottom: 8px;">Phone Number</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]+" title="Please enter only numbers." style="width: 100%; padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 4px;">
 
-            <label for="end-date" style="display: block; margin-bottom: 8px;">End Date</label>
-            <input type="date" id="end-date" name="end-date" style="width: 100%; padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 4px;">
+                <label for="start-date" style="display: block; margin-bottom: 8px;">Start Date</label>
+                <input type="date" id="start-date" name="start-date" style="width: 100%; padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 4px;" min="2025-11-02">
 
-            <label for="event-type" style="display: block; margin-bottom: 8px;">Event Type</label>
-            <div id="event-type-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
-                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'party')">
-                    <img src="sourcefiles/party.jpg" alt="Party" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
-                    <p style="margin-top: 8px;">Party</p>
-                </div>
-                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'company-meeting')">
-                    <img src="sourcefiles/company-meeting.jpg" alt="Company Meeting" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
-                    <p style="margin-top: 8px;">Company Meeting</p>
-                </div>
-                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'company-get-together')">
-                    <img src="sourcefiles/company-get-together.jpg" alt="Company Get Together" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
-                    <p style="margin-top: 8px; ">Company Get Together</p>
-                </div>
-                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'quinceanera')">
-                    <img src="sourcefiles/quinceanera.jpg" alt="Quinceañera" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
-                    <p style="margin-top: 8px;">Quinceañera</p>
-                </div>
-                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'wedding')">
-                    <img src="sourcefiles/wedding.jpg" alt="Wedding" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
-                    <p style="margin-top: 8px;">Wedding</p>
-                </div>
-                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'birthday')">
-                    <img src="sourcefiles/birthday.jpg" alt="Birthday" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
-                    <p style="margin-top: 8px;">Birthday</p>
-                </div>
-                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'conference')">
-                    <img src="sourcefiles/conference.jpg" alt="Conference" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
-                    <p style="margin-top: 8px;">Conference</p>
-                </div>
-                <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'other')">
-                    <img src="sourcefiles/other.jpg" alt="Other" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
-                    <p style="margin-top: 8px;">Other</p>
-                </div>
-            </div>
+                <label for="end-date" style="display: block; margin-bottom: 8px;">End Date</label>
+                <input type="date" id="end-date" name="end-date" style="width: 100%; padding: 8px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 4px;">
 
-            <label for="catering" style="display: block; margin-bottom: 8px;">Catering Options</label>
-            <div id="catering-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
-                <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'italian')">
-                    <img src="sourcefiles/italian-cuisine.jpg" alt="Italian Cuisine" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
-                    <p style="margin-top: 8px;">Italian Cuisine</p>
-                </div>
-                <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'bbq')">
-                    <img src="sourcefiles/bbq.jpg" alt="BBQ" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
-                    <p style="margin-top: 8px;">BBQ</p>
-                </div>
-                <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'vegan')">
-                    <img src="sourcefiles/vegan-options.jpg" alt="Vegan Options" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
-                    <p style="margin-top: 8px;">Vegan Options</p>
-                </div>
-                <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'desserts')">
-                    <img src="sourcefiles/desserts.jpg" alt="Desserts" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
-                    <p style="margin-top: 8px;">Desserts</p>
-                </div>
-            </div>
-
-            <label for="extra-services" style="display: block; margin-bottom: 8px;">Extra Services</label>
-            <div id="extra-services-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
-                <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'lighting')">
-                    <img src="sourcefiles/lighting.jpg" alt="Lighting" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
-                    <p style="margin-top: 8px;">Lighting</p>
-                </div>
-                <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'sound')">
-                    <img src="sourcefiles/sound-system.jpg" alt="Sound System" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
-                    <p style="margin-top: 8px;">Sound System</p>
-                </div>
-            </div>
-
-            <label for="decorations" style="display: block; margin-bottom: 8px;">Decorations</label>
-            <div id="decorations-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
-                <div style="text-align: center; cursor: pointer;" onclick="selectDecorationOption(this, 'basic-decorations')">
-                    <img src="sourcefiles/basic-decorations.jpg" alt="Basic Decorations" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
-                    <p style="margin-top: 8px;">Standard Decorations</p>
-                </div>
-                <div style="text-align: center; cursor: pointer;" onclick="selectDecorationOption(this, 'enhanced-decorations')">
-                    <img src="sourcefiles/enhanced-decorations.jpg" alt="Enhanced Decorations" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
-                    <p style="margin-top: 8px;">Enhanced Decorations</p>
-                </div>
-            </div>
-
-            <div id="theme-colors" style="display: none; margin-bottom: 16px;">
-                <label for="theme-color" style="display: block; margin-bottom: 8px;">Select Theme Color</label>
-                <div style="display: flex; gap: 16px;">
-                    <div style="text-align: center; cursor: pointer;" onclick="selectThemeColor(this, 'red')">
-                        <img src="sourcefiles/red-theme.jpg" alt="Red Theme" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
-                        <p style="margin-top: 8px;">Red</p>
+                <label for="event-type" style="display: block; margin-bottom: 8px;">Event Type</label>
+                <div id="event-type-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+                    <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'party')">
+                        <img src="sourcefiles/party.jpg" alt="Party" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Party</p>
                     </div>
-                    <div style="text-align: center; cursor: pointer;" onclick="selectThemeColor(this, 'blue')">
-                        <img src="sourcefiles/blue-theme.jpg" alt="Blue Theme" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
-                        <p style="margin-top: 8px;">Blue</p>
+                    <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'company-meeting')">
+                        <img src="sourcefiles/company-meeting.jpg" alt="Company Meeting" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Company Meeting</p>
                     </div>
-                    <div style="text-align: center; cursor: pointer;" onclick="selectThemeColor(this, 'green')">
-                        <img src="sourcefiles/green-theme.jpg" alt="Green Theme" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
-                        <p style="margin-top: 8px;">Green</p>
+                    <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'company-get-together')">
+                        <img src="sourcefiles/company-get-together.jpg" alt="Company Get Together" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px; ">Company Get Together</p>
                     </div>
-                    <div style="text-align: center; cursor: pointer;" onclick="selectThemeColor(this, 'gold')">
-                        <img src="sourcefiles/gold-theme.jpg" alt="Gold Theme" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
-                        <p style="margin-top: 8px;">Gold</p>
+                    <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'quinceanera')">
+                        <img src="sourcefiles/quinceanera.jpg" alt="Quinceañera" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Quinceañera</p>
+                    </div>
+                    <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'wedding')">
+                        <img src="sourcefiles/wedding.jpg" alt="Wedding" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Wedding</p>
+                    </div>
+                    <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'birthday')">
+                        <img src="sourcefiles/birthday.jpg" alt="Birthday" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Birthday</p>
+                    </div>
+                    <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'conference')">
+                        <img src="sourcefiles/conference.jpg" alt="Conference" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Conference</p>
+                    </div>
+                    <div style="text-align: center; cursor: pointer;" onclick="selectEventType(this, 'other')">
+                        <img src="sourcefiles/other.jpg" alt="Other" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Other</p>
                     </div>
                 </div>
-            </div>
 
-            <label for="photography-services" style="display: block; margin-bottom: 8px;">Event Photography Services</label>
-            <div id="photography-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
-                <div style="text-align: center; cursor: pointer;" onclick="selectSingleOption(this, 'basic-photography', 'photography-options')">
-                    <img src="sourcefiles/basic-photography.jpg" alt="Basic Photography" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
-                    <p style="margin-top: 8px;">Basic</p>
+                <label for="catering" style="display: block; margin-bottom: 8px;">Catering Options</label>
+                <div id="catering-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+                    <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'italian')">
+                        <img src="sourcefiles/italian-cuisine.jpg" alt="Italian Cuisine" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Italian Cuisine</p>
+                    </div>
+                    <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'bbq')">
+                        <img src="sourcefiles/bbq.jpg" alt="BBQ" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">BBQ</p>
+                    </div>
+                    <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'vegan')">
+                        <img src="sourcefiles/vegan-options.jpg" alt="Vegan Options" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Vegan Options</p>
+                    </div>
+                    <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'desserts')">
+                        <img src="sourcefiles/desserts.jpg" alt="Desserts" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Desserts</p>
+                    </div>
                 </div>
-                <div style="text-align: center; cursor: pointer;" onclick="selectSingleOption(this, 'premium-photography', 'photography-options')">
-                    <img src="sourcefiles/premium-photography.jpg" alt="Premium Photography" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
-                    <p style="margin-top: 8px;">Premium</p>
+
+                <label for="extra-services" style="display: block; margin-bottom: 8px;">Extra Services</label>
+                <div id="extra-services-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+                    <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'lighting')">
+                        <img src="sourcefiles/lighting.jpg" alt="Lighting" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Lighting</p>
+                    </div>
+                    <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'sound')">
+                        <img src="sourcefiles/sound-system.jpg" alt="Sound System" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Sound System</p>
+                    </div>
                 </div>
-            </div>
 
-            <h3 id="price" style="text-align: center; margin-top: 16px;">Total Price: $0</h3>
+                <label for="decorations" style="display: block; margin-bottom: 8px;">Decorations</label>
+                <div id="decorations-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+                    <div style="text-align: center; cursor: pointer;" onclick="selectDecorationOption(this, 'basic-decorations')">
+                        <img src="sourcefiles/basic-decorations.jpg" alt="Basic Decorations" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Standard Decorations</p>
+                    </div>
+                    <div style="text-align: center; cursor: pointer;" onclick="selectDecorationOption(this, 'enhanced-decorations')">
+                        <img src="sourcefiles/enhanced-decorations.jpg" alt="Enhanced Decorations" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Enhanced Decorations</p>
+                    </div>
+                </div>
 
-            <button type="submit" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">Reserve</button>
-            <button type="reset" style="width: 100%; padding: 10px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px;">Reset</button>
-        </form>
+                <div id="theme-colors" style="display: none; margin-bottom: 16px;">
+                    <label for="theme-color" style="display: block; margin-bottom: 8px;">Select Theme Color</label>
+                    <div style="display: flex; gap: 16px;">
+                        <div style="text-align: center; cursor: pointer;" onclick="selectThemeColor(this, 'red')">
+                            <img src="sourcefiles/red-theme.jpg" alt="Red Theme" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                            <p style="margin-top: 8px;">Red</p>
+                        </div>
+                        <div style="text-align: center; cursor: pointer;" onclick="selectThemeColor(this, 'blue')">
+                            <img src="sourcefiles/blue-theme.jpg" alt="Blue Theme" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                            <p style="margin-top: 8px;">Blue</p>
+                        </div>
+                        <div style="text-align: center; cursor: pointer;" onclick="selectThemeColor(this, 'green')">
+                            <img src="sourcefiles/green-theme.jpg" alt="Green Theme" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                            <p style="margin-top: 8px;">Green</p>
+                        </div>
+                        <div style="text-align: center; cursor: pointer;" onclick="selectThemeColor(this, 'gold')">
+                            <img src="sourcefiles/gold-theme.jpg" alt="Gold Theme" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                            <p style="margin-top: 8px;">Gold</p>
+                        </div>
+                    </div>
+                </div>
+
+                <label for="photography-services" style="display: block; margin-bottom: 8px;">Event Photography Services</label>
+                <div id="photography-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+                    <div style="text-align: center; cursor: pointer;" onclick="selectSingleOption(this, 'basic-photography', 'photography-options')">
+                        <img src="sourcefiles/basic-photography.jpg" alt="Basic Photography" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Basic</p>
+                    </div>
+                    <div style="text-align: center; cursor: pointer;" onclick="selectSingleOption(this, 'premium-photography', 'photography-options')">
+                        <img src="sourcefiles/premium-photography.jpg" alt="Premium Photography" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <p style="margin-top: 8px;">Premium</p>
+                    </div>
+                </div>
+
+                <h3 id="price" style="text-align: center; margin-top: 16px;">Total Price: $0</h3>
+
+                <button type="submit" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">Reserve</button>
+                <button type="reset" style="width: 100%; padding: 10px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px;">Reset</button>
+            </form>
+        </div>
 
         <script>
             const form = document.getElementById('reserve-form');
             const priceElement = document.getElementById('price');
             const selectedOptions = new Set();
+            const mainContent = document.getElementById('main-content');
+            let currentEventType = null; // track selected event type
 
             const eventTypePrices = {
                 party: 500,
@@ -183,6 +188,11 @@
 
             function calculatePrice() {
                 let price = 0;
+
+                // include base price of selected event type if any
+                if (currentEventType && eventTypePrices[currentEventType]) {
+                    price += eventTypePrices[currentEventType];
+                }
 
                 selectedOptions.forEach(option => {
                     if (option === 'italian') price += 300;
@@ -227,6 +237,23 @@
                 selectedOptions.delete('theme-color');
                 selectedOptions.add(`theme-color:${color}`);
                 element.style.border = '2px solid #4CAF50';
+                switch(color) {
+                    case 'red':
+                        document.getElementById('formbox').style.backgroundColor = 'rgb(255, 235, 238)';
+                        break;
+                    case 'blue':
+                        document.getElementById('formbox').style.backgroundColor = 'rgb(227, 242, 253)';
+                        break;
+                    case 'green':
+                        document.getElementById('formbox').style.backgroundColor = 'rgb(232, 245, 233)';
+                        break;
+                    case 'gold':
+                        document.getElementById('formbox').style.backgroundColor = 'rgb(255, 249, 231)';
+                        break;
+                    default:
+                        color = 'rgb(253, 245, 236)';
+                }
+
 
                 calculatePrice();
             }
@@ -247,6 +274,7 @@
 
                 if (value === 'enhanced-decorations') {
                     document.getElementById('theme-colors').style.display = 'block';
+                    
                 } else {
                     document.getElementById('theme-colors').style.display = 'none';
                 }
@@ -258,9 +286,22 @@
                 const options = document.querySelectorAll('#event-type-options div');
                 options.forEach(option => option.style.border = 'none');
                 element.style.border = '2px solid #4CAF50';
-                const basePrice = eventTypePrices[type] || 0;
-                priceElement.textContent = `Total Price: $${basePrice}`;
+
+                // set current event type
+                currentEventType = type;
+
+                // update background with a 10% black tint overlay
+                const imagePath = `sourcefiles/${type}.jpg`;
+                mainContent.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('${imagePath}')`;
+                mainContent.style.backgroundSize = 'cover';
+                mainContent.style.backgroundPosition = 'center';
+                mainContent.style.backgroundRepeat = 'no-repeat';
+                mainContent.style.backgroundAttachment = 'fixed'; // keep background stagnant during scroll
+
+                // recalculate total to include base price + selected options
+                calculatePrice();
             }
+
 
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
@@ -285,6 +326,11 @@
 
                 // Reset the price to $0
                 priceElement.textContent = 'Total Price: $0';
+
+                // Reset current event type and background
+                currentEventType = null;
+                mainContent.style.backgroundImage = 'none';
+                mainContent.style.backgroundAttachment = ''; // remove fixed attachment on reset
 
                 // Remove visual selections for specific groups
                 const groupsToReset = ['#event-type-options', '#catering-options', '#extra-services-options', '#decorations-options', '#photography-options'];
