@@ -93,45 +93,54 @@
                 </div>
 
                 <label for="catering" style="display: block; margin-bottom: 8px;">Catering Options</label>
-                <div id="catering-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
-                    <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'italian')">
-                        <img src="sourcefiles/italian-cuisine.jpg" alt="Italian Cuisine" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                <div id="catering-options" class="option-grid" style="margin-bottom: 16px;">
+                    <div class="option-card" onclick="toggleSelection(this, 'romanian-cuisine')">
+                        <img src="sourcefiles/romanian.png" alt="Romanian Cuisine">
+                        <p style="margin-top: 8px;">Romanian Cuisine</p>
+                    </div>
+                    <div class="option-card" onclick="toggleSelection(this, 'romanian-desserts')">
+                        <img src="sourcefiles/romanian-desserts.png" alt="Romanian Desserts">
+                        <p style="margin-top: 8px;">Romanian Desserts</p>
+                    </div>
+
+                    <div class="option-card" onclick="toggleSelection(this, 'italian')">
+                        <img src="sourcefiles/italian-cuisine.jpg" alt="Italian Cuisine">
                         <p style="margin-top: 8px;">Italian Cuisine</p>
                     </div>
-                    <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'bbq')">
-                        <img src="sourcefiles/bbq.jpg" alt="BBQ" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <div class="option-card" onclick="toggleSelection(this, 'bbq')">
+                        <img src="sourcefiles/bbq.jpg" alt="BBQ">
                         <p style="margin-top: 8px;">BBQ</p>
                     </div>
-                    <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'vegan')">
-                        <img src="sourcefiles/vegan-options.jpg" alt="Vegan Options" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <div class="option-card" onclick="toggleSelection(this, 'vegan')">
+                        <img src="sourcefiles/vegan-options.jpg" alt="Vegan Options">
                         <p style="margin-top: 8px;">Vegan Options</p>
                     </div>
-                    <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'desserts')">
-                        <img src="sourcefiles/desserts.jpg" alt="Desserts" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <div class="option-card" onclick="toggleSelection(this, 'desserts')">
+                        <img src="sourcefiles/desserts.jpg" alt="Desserts">
                         <p style="margin-top: 8px;">Desserts</p>
                     </div>
                 </div>
 
                 <label for="extra-services" style="display: block; margin-bottom: 8px;">Extra Services</label>
-                <div id="extra-services-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
-                    <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'lighting')">
-                        <img src="sourcefiles/lighting.jpg" alt="Lighting" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                <div id="extra-services-options" class="option-grid" style="margin-bottom: 16px;">
+                    <div class="option-card" onclick="toggleSelection(this, 'lighting')">
+                        <img src="sourcefiles/lighting.jpg" alt="Lighting">
                         <p style="margin-top: 8px;">Lighting</p>
                     </div>
-                    <div style="text-align: center; cursor: pointer;" onclick="toggleSelection(this, 'sound')">
-                        <img src="sourcefiles/sound-system.jpg" alt="Sound System" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <div class="option-card" onclick="toggleSelection(this, 'sound')">
+                        <img src="sourcefiles/sound-system.jpg" alt="Sound System">
                         <p style="margin-top: 8px;">Sound System</p>
                     </div>
                 </div>
 
                 <label for="decorations" style="display: block; margin-bottom: 8px;">Decorations</label>
-                <div id="decorations-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
-                    <div style="text-align: center; cursor: pointer;" onclick="selectDecorationOption(this, 'basic-decorations')">
-                        <img src="sourcefiles/basic-decorations.jpg" alt="Basic Decorations" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                <div id="decorations-options" class="option-grid" style="margin-bottom: 16px;">
+                    <div class="option-card" onclick="selectDecorationOption(this, 'basic-decorations')">
+                        <img src="sourcefiles/basic-decorations.jpg" alt="Basic Decorations">
                         <p style="margin-top: 8px;">Standard Decorations</p>
                     </div>
-                    <div style="text-align: center; cursor: pointer;" onclick="selectDecorationOption(this, 'enhanced-decorations')">
-                        <img src="sourcefiles/enhanced-decorations.jpg" alt="Enhanced Decorations" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <div class="option-card" onclick="selectDecorationOption(this, 'enhanced-decorations')">
+                        <img src="sourcefiles/enhanced-decorations.jpg" alt="Enhanced Decorations">
                         <p style="margin-top: 8px;">Enhanced Decorations</p>
                     </div>
                 </div>
@@ -139,33 +148,33 @@
                 <div id="theme-colors" style="display: none; margin-bottom: 16px;">
                     <label for="theme-color" style="display: block; margin-bottom: 8px;">Select Theme Color</label>
                     <div style="display: flex; gap: 16px;">
-                        <div style="text-align: center; cursor: pointer;" onclick="selectThemeColor(this, 'red')">
-                            <img src="sourcefiles/red-theme.jpg" alt="Red Theme" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <div class="option-card" onclick="selectThemeColor(this, 'red')">
+                            <img src="sourcefiles/red-theme.jpg" alt="Red Theme">
                             <p style="margin-top: 8px;">Red</p>
                         </div>
-                        <div style="text-align: center; cursor: pointer;" onclick="selectThemeColor(this, 'blue')">
-                            <img src="sourcefiles/blue-theme.jpg" alt="Blue Theme" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <div class="option-card" onclick="selectThemeColor(this, 'blue')">
+                            <img src="sourcefiles/blue-theme.jpg" alt="Blue Theme">
                             <p style="margin-top: 8px;">Blue</p>
                         </div>
-                        <div style="text-align: center; cursor: pointer;" onclick="selectThemeColor(this, 'green')">
-                            <img src="sourcefiles/green-theme.jpg" alt="Green Theme" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <div class="option-card" onclick="selectThemeColor(this, 'green')">
+                            <img src="sourcefiles/green-theme.jpg" alt="Green Theme">
                             <p style="margin-top: 8px;">Green</p>
                         </div>
-                        <div style="text-align: center; cursor: pointer;" onclick="selectThemeColor(this, 'gold')">
-                            <img src="sourcefiles/gold-theme.jpg" alt="Gold Theme" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <div class="option-card" onclick="selectThemeColor(this, 'gold')">
+                            <img src="sourcefiles/gold-theme.jpg" alt="Gold Theme">
                             <p style="margin-top: 8px;">Gold</p>
                         </div>
                     </div>
                 </div>
 
                 <label for="photography-services" style="display: block; margin-bottom: 8px;">Event Photography Services</label>
-                <div id="photography-options" style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
-                    <div style="text-align: center; cursor: pointer;" onclick="selectSingleOption(this, 'basic-photography', 'photography-options')">
-                        <img src="sourcefiles/basic-photography.jpg" alt="Basic Photography" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                <div id="photography-options" class="option-grid" style="margin-bottom: 16px;">
+                    <div class="option-card" onclick="selectSingleOption(this, 'basic-photography', 'photography-options')">
+                        <img src="sourcefiles/basic-photography.jpg" alt="Basic Photography">
                         <p style="margin-top: 8px;">Basic</p>
                     </div>
-                    <div style="text-align: center; cursor: pointer;" onclick="selectSingleOption(this, 'premium-photography', 'photography-options')">
-                        <img src="sourcefiles/premium-photography.jpg" alt="Premium Photography" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                    <div class="option-card" onclick="selectSingleOption(this, 'premium-photography', 'photography-options')">
+                        <img src="sourcefiles/premium-photography.jpg" alt="Premium Photography">
                         <p style="margin-top: 8px;">Premium</p>
                     </div>
                 </div>
@@ -227,6 +236,7 @@
                 if (selectedOptions.has(value)) {
                     selectedOptions.delete(value);
                     element.style.border = 'none';
+                    element.classList.remove('selected');
 
                     if (value === 'decorations') {
                         document.getElementById('theme-colors').style.display = 'none';
@@ -234,6 +244,7 @@
                 } else {
                     selectedOptions.add(value);
                     element.style.border = '2px solid #4CAF50';
+                    element.classList.add('selected');
 
                     if (value === 'decorations') {
                         document.getElementById('theme-colors').style.display = 'block';
@@ -252,6 +263,9 @@
 
                 selectedOptions.forEach(option => {
                     // Catering (per 50 guests baseline)
+                    // Assumed pricing for new Romanian options (adjust as needed)
+                    if (option === 'romanian-cuisine') price += 1300; // assumption: slightly higher than Italian
+                    if (option === 'romanian-desserts') price += 600; // assumption: slightly higher than generic desserts
                     if (option === 'italian') price += 1250;
                     if (option === 'bbq') price += 1050;
                     if (option === 'vegan') price += 1350;
@@ -285,6 +299,7 @@
 
                 options.forEach(option => {
                     option.style.border = 'none';
+                    option.classList.remove('selected');
                 });
 
                 selectedOptions.delete('basic-photography');
@@ -292,6 +307,7 @@
 
                 selectedOptions.add(value);
                 element.style.border = '2px solid #4CAF50';
+                element.classList.add('selected');
 
                 calculatePrice();
             }
@@ -302,6 +318,7 @@
 
                 options.forEach(option => {
                     option.style.border = 'none';
+                    option.classList.remove('selected');
                 });
                 // Remove any previously selected theme-color:* entries before adding new
                 Array.from(selectedOptions)
@@ -309,6 +326,7 @@
                     .forEach(o => selectedOptions.delete(o));
                 selectedOptions.add(`theme-color:${color}`);
                 element.style.border = '2px solid #4CAF50';
+                element.classList.add('selected');
                 const formBox = document.getElementById('formbox');
                 // Override full background (not just backgroundColor) so gradient doesn't mask theme change
                 // Apply color-themed gradient based on selected color
@@ -339,6 +357,7 @@
 
                 options.forEach(option => {
                     option.style.border = 'none';
+                    option.classList.remove('selected');
                 });
 
                 selectedOptions.delete('basic-decorations');
@@ -346,6 +365,7 @@
 
                 selectedOptions.add(value);
                 element.style.border = '2px solid #4CAF50';
+                element.classList.add('selected');
 
                 if (value === 'enhanced-decorations') {
                     document.getElementById('theme-colors').style.display = 'block';
@@ -454,6 +474,7 @@
                         const options = group.querySelectorAll('div');
                         options.forEach(option => {
                             option.style.border = 'none';
+                            option.classList.remove('selected');
                         });
                     }
                 });
